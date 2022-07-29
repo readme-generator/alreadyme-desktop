@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     val kotlinVersion = "1.6.10"
     kotlin("jvm") version kotlinVersion
+    kotlin("kapt") version kotlinVersion
     id("org.jetbrains.compose") version "1.1.0"
     id("org.jetbrains.kotlin.plugin.serialization") version kotlinVersion
 }
