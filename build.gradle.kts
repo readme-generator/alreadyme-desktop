@@ -27,6 +27,10 @@ dependencies {
     implementation("io.ktor:ktor-client-logging-jvm:$ktorVersion")
     implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+
+    // Dagger 2
+    val daggerVersion = "2.43"
+    kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 }
 
 tasks.withType<KotlinCompile>() {
