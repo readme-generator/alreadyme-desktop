@@ -3,8 +3,11 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    val kotlinVersion = "1.6.10"
+    kotlin("jvm") version kotlinVersion
+    kotlin("kapt") version kotlinVersion
     id("org.jetbrains.compose") version "1.1.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version kotlinVersion
 }
 
 group = "dev.yjyoon"
@@ -18,6 +21,17 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
+
+    // Ktor client
+    val ktorVersion = "2.0.3"
+    implementation("io.ktor:ktor-client-cio:$ktorVersion")
+    implementation("io.ktor:ktor-client-logging-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+
+    // Dagger 2
+    val daggerVersion = "2.43"
+    kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 }
 
 tasks.withType<KotlinCompile>() {
