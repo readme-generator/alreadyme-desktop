@@ -30,8 +30,11 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
     // Dagger 2
-    val daggerVersion = "2.43"
+    val daggerVersion = "2.43.1"
+    implementation("com.google.dagger:dagger:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
+
+    implementation("javax.inject:javax.inject:1")
 }
 
 tasks.withType<KotlinCompile>() {
