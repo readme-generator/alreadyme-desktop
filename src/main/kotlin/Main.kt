@@ -1,5 +1,3 @@
-import androidx.compose.foundation.window.WindowDraggableArea
-import androidx.compose.material.TopAppBar
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
@@ -13,17 +11,13 @@ fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
         title = R.string.APP_TITLE,
-        undecorated = true,
+        undecorated = false,
         state = WindowState(
             position = WindowPosition(Alignment.Center),
             width = 1280.dp,
             height = 800.dp
         )
     ) {
-        WindowDraggableArea {
-            TopAppBar(backgroundColor = R.color.DarkGray) {
-            }
-        }
         App()
     }
 }
