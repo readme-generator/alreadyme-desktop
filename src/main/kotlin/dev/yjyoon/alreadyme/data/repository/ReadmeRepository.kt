@@ -17,7 +17,7 @@ class ReadmeRepository @Inject constructor(
             setBody(UrlRequest(url))
         }.body() as ReadmeResponse
 
-    suspend fun test(): Result<Unit> = runCatching {
+    suspend fun test(url: String): Result<Unit> = runCatching {
         delay(2000L)
     }
 }
