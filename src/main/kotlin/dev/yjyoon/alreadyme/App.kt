@@ -10,7 +10,9 @@ import dev.yjyoon.alreadyme.ui.value.AlreadymeTheme
 fun App() {
     val mainViewModel: MainViewModel = DaggerViewModelComponent.create().callMainViewModel()
 
-    AlreadymeTheme {
+    AlreadymeTheme(
+        isDarkTheme = true
+    ) {
         MainScreen(mainViewModel)
     }
 }
