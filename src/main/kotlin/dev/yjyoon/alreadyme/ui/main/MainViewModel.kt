@@ -16,10 +16,10 @@ class MainViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<MainUiState>(MainUiState.Waiting)
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
-    fun test(scope: CoroutineScope) {
+    fun postUrl(scope: CoroutineScope, url: String) {
         scope.launch {
             _uiState.value = MainUiState.Generating
-            readmeRepository.test()
+            readmeRepository.test(url)
                 .onSuccess { _uiState.value = MainUiState.Done(readme = Readme("Test README.md")) }
         }
     }
