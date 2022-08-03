@@ -14,7 +14,11 @@ fun main() = application {
         onCloseRequest = ::exitApplication,
         title = R.string.APP_TITLE,
         undecorated = true,
-        state = WindowState(position = WindowPosition(Alignment.Center), width = 1280.dp, height = 800.dp)
+        state = WindowState(
+            position = WindowPosition(Alignment.Center),
+            width = 1280.dp,
+            height = 800.dp
+        )
     ) {
         WindowDraggableArea {
             TopAppBar(backgroundColor = R.color.DarkGray) {
