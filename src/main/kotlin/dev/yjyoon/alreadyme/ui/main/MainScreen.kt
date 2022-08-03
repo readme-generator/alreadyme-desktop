@@ -3,7 +3,6 @@ package dev.yjyoon.alreadyme.ui.main
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -12,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import dev.yjyoon.alreadyme.ui.feature.TitleScreen
 
 @Composable
 fun MainScreen(viewModel: MainViewModel) {
@@ -20,14 +20,14 @@ fun MainScreen(viewModel: MainViewModel) {
 
     MainScreen(
         uiState = uiState,
-        test = { viewModel.test(scope) }
+        onPostUrl = { url: String -> viewModel.postUrl(scope, url) }
     )
 }
 
 @Composable
 fun MainScreen(
     uiState: MainUiState,
-    test: () -> Unit
+    onPostUrl: (String) -> Unit
 ) {
     Column(
         Modifier.fillMaxSize(),
@@ -36,13 +36,13 @@ fun MainScreen(
     ) {
         when (uiState) {
             MainUiState.Waiting -> {
-                Button(onClick = test) {
-                    Text("Get README.md")
-                }
+                TitleScreen(onPostUrl = onPostUrl)
             }
+
             MainUiState.Generating -> {
                 CircularProgressIndicator()
             }
+
             is MainUiState.Done -> {
                 Text(uiState.readme.markdown)
             }

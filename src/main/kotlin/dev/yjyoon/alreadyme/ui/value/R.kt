@@ -16,5 +16,9 @@ object R {
     @Suppress("ClassName")
     object string {
         const val APP_TITLE = "ALREADYME.md"
+        const val APP_DESCRIPTION = "The easiest way to build a README.md for your git repository"
+
+        const val URL_INPUT_PLACEHOLDER = "Input your git repository URL here"
+        const val URL_SUBMIT = "Get README.md"
     }
 }
