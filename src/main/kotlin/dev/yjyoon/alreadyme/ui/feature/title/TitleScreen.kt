@@ -1,6 +1,7 @@
 package dev.yjyoon.alreadyme.ui.feature.title
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -33,14 +35,20 @@ fun TitleScreen(
     var url: String by remember { mutableStateOf("") }
 
     Column(
-        Modifier.fillMaxSize(),
+        Modifier.fillMaxSize().background(color = R.color.DarkGray),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = R.string.APP_TITLE, fontSize = 54.sp, fontWeight = FontWeight.Bold)
+        Text(
+            text = R.string.APP_TITLE,
+            color = MaterialTheme.colors.onSurface,
+            fontSize = 54.sp,
+            fontWeight = FontWeight.Bold
+        )
         Spacer(Modifier.height(8.dp))
         Text(
             text = R.string.APP_DESCRIPTION,
+            color = MaterialTheme.colors.onSurface,
             fontSize = 22.sp,
             fontStyle = FontStyle.Italic,
             fontWeight = FontWeight.ExtraLight
@@ -61,7 +69,7 @@ fun TitleScreen(
             Spacer(Modifier.width(12.dp))
             Button(
                 onClick = { onPostUrl(url) },
-                contentPadding = PaddingValues(18.dp)
+                contentPadding = PaddingValues(vertical = 16.dp, horizontal = 22.dp)
             ) {
                 Text(R.string.URL_SUBMIT)
             }
