@@ -1,4 +1,4 @@
-package dev.yjyoon.alreadyme.ui.feature
+package dev.yjyoon.alreadyme.ui.feature.title
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Arrangement
