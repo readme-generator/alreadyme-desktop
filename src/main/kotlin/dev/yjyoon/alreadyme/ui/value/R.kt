@@ -20,5 +20,11 @@ object R {
 
         const val URL_INPUT_PLACEHOLDER = "Input your git repository URL here"
         const val URL_SUBMIT = "Get README.md"
+
+        const val README_CREATED = "README.md has been created successfully!"
+
+        const val BACK_TO_HOME = "Back to home"
+        const val DOWNLOAD_DIRECTLY = "Download directly"
+        const val PR_TO_REPOSITORY = "PR to repository"
     }
 }

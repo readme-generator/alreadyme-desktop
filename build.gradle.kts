@@ -34,6 +34,8 @@ dependencies {
     implementation("com.google.dagger:dagger:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
+    implementation("com.mikepenz:multiplatform-markdown-renderer:0.6.1")
+
     implementation("javax.inject:javax.inject:1")
 }
 
