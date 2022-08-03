@@ -22,28 +22,28 @@ val Typography = Typography(
     defaultFontFamily = Montserrat,
 
     h1 = TextStyle(
-        fontSize = 95.sp,
-        fontWeight = FontWeight.Normal,
+        fontSize = 48.sp,
+        fontWeight = FontWeight.Bold,
     ),
     h2 = TextStyle(
-        fontSize = 59.sp,
-        fontWeight = FontWeight.Normal,
+        fontSize = 32.sp,
+        fontWeight = FontWeight.Bold,
     ),
     h3 = TextStyle(
-        fontSize = 48.sp,
-        fontWeight = FontWeight.Medium
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold
     ),
     h4 = TextStyle(
-        fontSize = 34.sp,
+        fontSize = 20.sp,
         fontWeight = FontWeight.Medium,
     ),
     h5 = TextStyle(
-        fontSize = 24.sp,
+        fontSize = 16.sp,
         fontWeight = FontWeight.Medium
     ),
     h6 = TextStyle(
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Medium,
     ),
     subtitle1 = TextStyle(
         fontSize = 16.sp,
@@ -62,7 +62,63 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
     ),
     button = TextStyle(
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    caption = TextStyle(
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Medium,
+    ),
+    overline = TextStyle(
+        fontSize = 10.sp,
+        fontWeight = FontWeight.Medium,
+    )
+)
+
+val MarkdownTypography = Typography(
+
+    h1 = TextStyle(
+        fontSize = 48.sp,
+        fontWeight = FontWeight.Bold,
+    ),
+    h2 = TextStyle(
+        fontSize = 32.sp,
+        fontWeight = FontWeight.Bold,
+    ),
+    h3 = TextStyle(
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    h4 = TextStyle(
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Medium,
+    ),
+    h5 = TextStyle(
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    h6 = TextStyle(
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Medium,
+    ),
+    subtitle1 = TextStyle(
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Medium,
+    ),
+    subtitle2 = TextStyle(
         fontSize = 14.sp,
+        fontWeight = FontWeight.Bold,
+    ),
+    body1 = TextStyle(
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Normal,
+    ),
+    body2 = TextStyle(
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Normal,
+    ),
+    button = TextStyle(
+        fontSize = 18.sp,
         fontWeight = FontWeight.Bold
     ),
     caption = TextStyle(
