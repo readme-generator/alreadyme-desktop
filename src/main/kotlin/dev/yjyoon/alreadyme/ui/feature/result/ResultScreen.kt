@@ -1,6 +1,8 @@
 package dev.yjyoon.alreadyme.ui.feature.result
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -41,19 +43,27 @@ fun ResultScreen(
     val scrollState = rememberScrollState()
 
     Column(
-        Modifier.verticalScroll(scrollState).padding(56.dp),
+        Modifier.verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = R.string.README_CREATED,
-            color = MaterialTheme.colors.onSurface,
-            fontSize = 42.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(Modifier.height(42.dp))
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .height(180.dp)
+                .background(color = MaterialTheme.colors.onSurface)
+                .padding(36.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = R.string.README_CREATED,
+                color = MaterialTheme.colors.surface,
+                fontSize = 42.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+        Spacer(Modifier.height(28.dp))
         Card(
             shape = RoundedCornerShape(8.dp),
-            elevation = 2.dp,
             modifier = Modifier.padding(horizontal = 192.dp)
         ) {
             Markdown(
@@ -71,41 +81,50 @@ fun ResultScreen(
                 )
             )
         }
-        Spacer(Modifier.height(42.dp))
-        Row(
-            modifier = Modifier
+        Spacer(Modifier.height(28.dp))
+        Box(
+            Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 192.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .height(150.dp)
+                .background(color = MaterialTheme.colors.onSurface)
+                .padding(36.dp),
+            contentAlignment = Alignment.Center
         ) {
-            OutlinedButton(
-                onClick = {},
-                contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 192.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = R.string.BACK_TO_HOME)
-            }
-            Button(
-                onClick = {},
-                contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
-            ) {
-                Text(text = R.string.DOWNLOAD_DIRECTLY)
-            }
-            Button(
-                onClick = {},
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = R.color.Green,
-                    contentColor = R.color.White
-                ),
-                contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
-            ) {
-                Icon(
-                    painter = painterResource("drawables/ic_git.svg"),
-                    contentDescription = null,
-                    tint = MaterialTheme.colors.onSecondary,
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(Modifier.width(12.dp))
-                Text(text = R.string.PR_TO_REPOSITORY)
+                OutlinedButton(
+                    onClick = {},
+                    contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
+                ) {
+                    Text(text = R.string.BACK_TO_HOME)
+                }
+                Button(
+                    onClick = {},
+                    contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
+                ) {
+                    Text(text = R.string.DOWNLOAD_DIRECTLY)
+                }
+                Button(
+                    onClick = {},
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = R.color.Green,
+                        contentColor = R.color.White
+                    ),
+                    contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
+                ) {
+                    Icon(
+                        painter = painterResource("drawables/ic_git.svg"),
+                        contentDescription = null,
+                        tint = MaterialTheme.colors.onSecondary,
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Spacer(Modifier.width(12.dp))
+                    Text(text = R.string.PR_TO_REPOSITORY)
+                }
             }
         }
     }
