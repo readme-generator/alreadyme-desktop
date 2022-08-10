@@ -11,7 +11,7 @@ fun App() {
     val mainViewModel: MainViewModel = DaggerViewModelComponent.create().callMainViewModel()
 
     AlreadymeTheme(
-        isDarkTheme = true
+        isDarkTheme = false
     ) {
         MainScreen(mainViewModel)
     }

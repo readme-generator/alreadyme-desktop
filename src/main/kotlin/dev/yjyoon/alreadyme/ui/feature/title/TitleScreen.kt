@@ -3,12 +3,15 @@ package dev.yjyoon.alreadyme.ui.feature.title
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -35,43 +38,63 @@ fun TitleScreen(
     var url: String by remember { mutableStateOf("") }
 
     Column(
-        Modifier.fillMaxSize().background(color = R.color.DarkGray),
+        Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = R.string.APP_TITLE,
-            color = MaterialTheme.colors.onSurface,
-            fontSize = 54.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(Modifier.height(8.dp))
-        Text(
-            text = R.string.APP_DESCRIPTION,
-            color = MaterialTheme.colors.onSurface,
-            fontSize = 22.sp,
-            fontStyle = FontStyle.Italic,
-            fontWeight = FontWeight.ExtraLight
-        )
-        Spacer(Modifier.height(36.dp))
-        Row(
-            verticalAlignment = Alignment.CenterVertically
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(0.5f)
+                .background(color = MaterialTheme.colors.onSurface)
+                .padding(36.dp),
+            contentAlignment = Alignment.BottomCenter
         ) {
-            OutlinedTextField(
-                value = url,
-                onValueChange = { url = it },
-                modifier = Modifier.width(640.dp),
-                placeholder = {
-                    Text(text = R.string.URL_INPUT_PLACEHOLDER)
-                },
-                singleLine = true
-            )
-            Spacer(Modifier.width(12.dp))
-            Button(
-                onClick = { onPostUrl(url) },
-                contentPadding = PaddingValues(vertical = 16.dp, horizontal = 22.dp)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(R.string.URL_SUBMIT)
+                Text(
+                    text = R.string.APP_TITLE,
+                    color = MaterialTheme.colors.surface,
+                    fontSize = 54.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = R.string.APP_DESCRIPTION,
+                    color = MaterialTheme.colors.surface,
+                    fontSize = 22.sp,
+                    fontStyle = FontStyle.Italic,
+                    fontWeight = FontWeight.ExtraLight
+                )
+            }
+        }
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(0.5f)
+                .padding(36.dp),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OutlinedTextField(
+                    value = url,
+                    onValueChange = { url = it },
+                    modifier = Modifier.width(640.dp),
+                    placeholder = {
+                        Text(text = R.string.URL_INPUT_PLACEHOLDER)
+                    },
+                    singleLine = true
+                )
+                Spacer(Modifier.width(12.dp))
+                Button(
+                    onClick = { onPostUrl(url) },
+                    contentPadding = PaddingValues(vertical = 16.dp, horizontal = 22.dp)
+                ) {
+                    Text(R.string.URL_SUBMIT)
+                }
             }
         }
     }
