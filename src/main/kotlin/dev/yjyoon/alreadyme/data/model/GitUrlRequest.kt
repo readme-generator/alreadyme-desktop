@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GitUrlRequest(
-    val url: String
+    val githubOriginalUrl: String
 )
