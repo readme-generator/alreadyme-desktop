@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.sp
 import com.mikepenz.markdown.Markdown
 import com.mikepenz.markdown.MarkdownDefaults
 import dev.yjyoon.alreadyme.ui.model.Readme
-import dev.yjyoon.alreadyme.ui.model.Readme.Companion.TEST_README
 import dev.yjyoon.alreadyme.ui.value.MarkdownTypography
 import dev.yjyoon.alreadyme.ui.value.R
 
@@ -68,7 +67,7 @@ fun ResultScreen(
             modifier = Modifier.padding(horizontal = 192.dp)
         ) {
             Markdown(
-                content = TEST_README.markdown,
+                content = readme.markdown,
                 modifier = Modifier.padding(36.dp),
                 typography = MarkdownDefaults.markdownTypography(
                     h1 = MarkdownTypography.h1,

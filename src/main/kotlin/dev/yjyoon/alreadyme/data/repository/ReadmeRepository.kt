@@ -5,19 +5,15 @@ import dev.yjyoon.alreadyme.data.model.ReadmeResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class ReadmeRepository @Inject constructor(
     private val client: HttpClient
 ) {
 
-    suspend fun generateReadme(url: String): ReadmeResponse =
-        client.post("url") {
+    suspend fun generateReadme(url: String): Result<ReadmeResponse> = runCatching {
+        client.post("") {
             setBody(GitUrlRequest(url))
         }.body() as ReadmeResponse
-
-    suspend fun test(url: String): Result<Unit> = runCatching {
-        delay(2000L)
     }
 }
