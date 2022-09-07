@@ -38,6 +38,7 @@ import dev.yjyoon.alreadyme.ui.value.R
 @Composable
 fun ResultScreen(
     readme: Readme,
+    onDownload: (Long) -> Unit,
     onBackToTitle: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -103,7 +104,7 @@ fun ResultScreen(
                     Text(text = R.string.BACK_TO_HOME)
                 }
                 Button(
-                    onClick = {},
+                    onClick = { onDownload(readme.id) },
                     contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
                 ) {
                     Text(text = R.string.DOWNLOAD_DIRECTLY)

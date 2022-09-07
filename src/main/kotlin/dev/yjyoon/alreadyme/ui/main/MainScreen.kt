@@ -23,6 +23,7 @@ fun MainScreen(viewModel: MainViewModel) {
     MainScreen(
         uiState = uiState,
         onPostUrl = { url: String -> viewModel.postUrl(scope, url) },
+        onDownload = { id: Long -> viewModel.downloadReadme(scope, id) },
         onBackToTitle = viewModel::backToTitle
     )
 }
@@ -31,6 +32,7 @@ fun MainScreen(viewModel: MainViewModel) {
 fun MainScreen(
     uiState: MainUiState,
     onPostUrl: (String) -> Unit,
+    onDownload: (Long) -> Unit,
     onBackToTitle: () -> Unit
 ) {
     Column(
@@ -50,6 +52,7 @@ fun MainScreen(
             is MainUiState.Done -> {
                 ResultScreen(
                     readme = uiState.readme,
+                    onDownload = onDownload,
                     onBackToTitle = onBackToTitle
                 )
             }

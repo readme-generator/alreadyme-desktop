@@ -24,6 +24,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun downloadReadme(scope: CoroutineScope, id: Long) {
+        scope.launch {
+            readmeRepository.downloadReadme(id).getOrThrow()
+        }
+    }
+
     fun backToTitle() {
         _uiState.value = MainUiState.Waiting
     }
