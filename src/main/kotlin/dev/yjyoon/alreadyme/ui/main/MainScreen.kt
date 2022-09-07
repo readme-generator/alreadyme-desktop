@@ -22,14 +22,16 @@ fun MainScreen(viewModel: MainViewModel) {
 
     MainScreen(
         uiState = uiState,
-        onPostUrl = { url: String -> viewModel.postUrl(scope, url) }
+        onPostUrl = { url: String -> viewModel.postUrl(scope, url) },
+        onBackToTitle = viewModel::backToTitle
     )
 }
 
 @Composable
 fun MainScreen(
     uiState: MainUiState,
-    onPostUrl: (String) -> Unit
+    onPostUrl: (String) -> Unit,
+    onBackToTitle: () -> Unit
 ) {
     Column(
         Modifier.fillMaxSize().background(color = MaterialTheme.colors.background),
@@ -46,7 +48,10 @@ fun MainScreen(
             }
 
             is MainUiState.Done -> {
-                ResultScreen(readme = uiState.readme)
+                ResultScreen(
+                    readme = uiState.readme,
+                    onBackToTitle = onBackToTitle
+                )
             }
         }
     }

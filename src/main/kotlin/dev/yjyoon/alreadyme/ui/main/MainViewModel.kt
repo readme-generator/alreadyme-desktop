@@ -23,4 +23,8 @@ class MainViewModel @Inject constructor(
                 .onSuccess { _uiState.value = MainUiState.Done(readme = Readme("Test README.md")) }
         }
     }
+
+    fun backToTitle() {
+        _uiState.value = MainUiState.Waiting
+    }
 }

@@ -38,7 +38,8 @@ import dev.yjyoon.alreadyme.ui.value.R
 
 @Composable
 fun ResultScreen(
-    readme: Readme
+    readme: Readme,
+    onBackToTitle: () -> Unit
 ) {
     val scrollState = rememberScrollState()
 
@@ -97,7 +98,7 @@ fun ResultScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 OutlinedButton(
-                    onClick = {},
+                    onClick = onBackToTitle,
                     contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
                 ) {
                     Text(text = R.string.BACK_TO_HOME)
