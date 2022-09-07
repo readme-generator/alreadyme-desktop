@@ -67,7 +67,7 @@ fun ResultScreen(
             modifier = Modifier.padding(horizontal = 192.dp)
         ) {
             Markdown(
-                content = readme.markdown,
+                content = readme.rawText,
                 modifier = Modifier.padding(36.dp),
                 typography = MarkdownDefaults.markdownTypography(
                     h1 = MarkdownTypography.h1,

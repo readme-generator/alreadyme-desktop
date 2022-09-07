@@ -8,11 +8,10 @@ data class ReadmeResponse(
     val id: Long,
     val githubOriginalUrl: String,
     val readmeText: String,
-    val objectUrl: String?,
     val createdTime: String
 )
 
 fun ReadmeResponse.toReadme() = Readme(
     id = id,
-    markdown = readmeText
+    rawText = readmeText
 )
