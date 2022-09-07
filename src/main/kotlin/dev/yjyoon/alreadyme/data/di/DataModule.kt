@@ -22,7 +22,7 @@ class DataModule {
 
         // Header
         defaultRequest {
-            url("https://jsonplaceholder.typicode.com/todos/")
+            url("http://43.200.219.154:8080/api/v1/app/")
             accept(ContentType.Application.Json)
             contentType(ContentType.Application.Json)
         }

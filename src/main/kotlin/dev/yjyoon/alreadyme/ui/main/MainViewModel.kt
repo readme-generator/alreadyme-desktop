@@ -1,7 +1,7 @@
 package dev.yjyoon.alreadyme.ui.main
 
+import dev.yjyoon.alreadyme.data.model.toReadme
 import dev.yjyoon.alreadyme.data.repository.ReadmeRepository
-import dev.yjyoon.alreadyme.ui.model.Readme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,8 +19,24 @@ class MainViewModel @Inject constructor(
     fun postUrl(scope: CoroutineScope, url: String) {
         scope.launch {
             _uiState.value = MainUiState.Generating
-            readmeRepository.test(url)
-                .onSuccess { _uiState.value = MainUiState.Done(readme = Readme("Test README.md")) }
+            readmeRepository.generateReadme(url)
+                .onSuccess { _uiState.value = MainUiState.Done(readme = it.toReadme()) }
         }
+    }
+
+    fun downloadReadme(scope: CoroutineScope, id: Long) {
+        scope.launch {
+            readmeRepository.downloadReadme(id).getOrThrow()
+        }
+    }
+
+    fun pullRequestReadme(scope: CoroutineScope, id: Long) {
+        scope.launch {
+            readmeRepository.pullRequestReadme(id).getOrThrow()
+        }
+    }
+
+    fun backToTitle() {
+        _uiState.value = MainUiState.Waiting
     }
 }

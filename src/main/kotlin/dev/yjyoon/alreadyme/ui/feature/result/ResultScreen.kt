@@ -32,13 +32,15 @@ import androidx.compose.ui.unit.sp
 import com.mikepenz.markdown.Markdown
 import com.mikepenz.markdown.MarkdownDefaults
 import dev.yjyoon.alreadyme.ui.model.Readme
-import dev.yjyoon.alreadyme.ui.model.Readme.Companion.TEST_README
 import dev.yjyoon.alreadyme.ui.value.MarkdownTypography
 import dev.yjyoon.alreadyme.ui.value.R
 
 @Composable
 fun ResultScreen(
-    readme: Readme
+    readme: Readme,
+    onDownload: (Long) -> Unit,
+    onPullRequest: (Long) -> Unit,
+    onBackToTitle: () -> Unit
 ) {
     val scrollState = rememberScrollState()
 
@@ -67,7 +69,7 @@ fun ResultScreen(
             modifier = Modifier.padding(horizontal = 192.dp)
         ) {
             Markdown(
-                content = TEST_README.markdown,
+                content = readme.rawText,
                 modifier = Modifier.padding(36.dp),
                 typography = MarkdownDefaults.markdownTypography(
                     h1 = MarkdownTypography.h1,
@@ -97,19 +99,19 @@ fun ResultScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 OutlinedButton(
-                    onClick = {},
+                    onClick = onBackToTitle,
                     contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
                 ) {
                     Text(text = R.string.BACK_TO_HOME)
                 }
                 Button(
-                    onClick = {},
+                    onClick = { onDownload(readme.id) },
                     contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
                 ) {
                     Text(text = R.string.DOWNLOAD_DIRECTLY)
                 }
                 Button(
-                    onClick = {},
+                    onClick = { onPullRequest(readme.id) },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = R.color.Green,
                         contentColor = R.color.White

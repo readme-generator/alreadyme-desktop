@@ -5,9 +5,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ReadmeResponse(
-    val readme: String
+    val id: Long,
+    val githubOriginalUrl: String,
+    val readmeText: String,
+    val createdTime: String
 )
 
 fun ReadmeResponse.toReadme() = Readme(
-    markdown = readme
+    id = id,
+    rawText = readmeText
 )

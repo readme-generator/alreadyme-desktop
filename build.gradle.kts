@@ -1,4 +1,3 @@
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -33,6 +32,9 @@ dependencies {
     val daggerVersion = "2.43.1"
     implementation("com.google.dagger:dagger:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
+
+    // Logging
+    implementation("ch.qos.logback:logback-classic:1.2.11")
 
     implementation("com.mikepenz:multiplatform-markdown-renderer:0.6.1")
 
