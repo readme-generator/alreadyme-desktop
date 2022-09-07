@@ -39,6 +39,7 @@ import dev.yjyoon.alreadyme.ui.value.R
 fun ResultScreen(
     readme: Readme,
     onDownload: (Long) -> Unit,
+    onPullRequest: (Long) -> Unit,
     onBackToTitle: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -110,7 +111,7 @@ fun ResultScreen(
                     Text(text = R.string.DOWNLOAD_DIRECTLY)
                 }
                 Button(
-                    onClick = {},
+                    onClick = { onPullRequest(readme.id) },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = R.color.Green,
                         contentColor = R.color.White

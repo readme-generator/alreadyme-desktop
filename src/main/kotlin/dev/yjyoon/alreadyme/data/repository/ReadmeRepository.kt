@@ -29,4 +29,10 @@ class ReadmeRepository @Inject constructor(
         file.writeBytes(markdown)
         println("A file saved to ${file.path}")
     }
+
+    suspend fun pullRequestReadme(id: Long): Result<Unit> = runCatching {
+        client.post("pull-request") {
+            setBody(IdRequest(id))
+        }
+    }
 }
