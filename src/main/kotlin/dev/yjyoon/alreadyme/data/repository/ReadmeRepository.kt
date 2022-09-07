@@ -1,7 +1,7 @@
 package dev.yjyoon.alreadyme.data.repository
 
+import dev.yjyoon.alreadyme.data.model.GitUrlRequest
 import dev.yjyoon.alreadyme.data.model.ReadmeResponse
-import dev.yjyoon.alreadyme.data.model.UrlRequest
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -14,7 +14,7 @@ class ReadmeRepository @Inject constructor(
 
     suspend fun generateReadme(url: String): ReadmeResponse =
         client.post("url") {
-            setBody(UrlRequest(url))
+            setBody(GitUrlRequest(url))
         }.body() as ReadmeResponse
 
     suspend fun test(url: String): Result<Unit> = runCatching {
