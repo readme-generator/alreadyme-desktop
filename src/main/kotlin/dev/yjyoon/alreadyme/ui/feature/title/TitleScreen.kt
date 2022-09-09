@@ -26,7 +26,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -86,25 +88,35 @@ fun TitleScreen(
                 .padding(36.dp),
             contentAlignment = Alignment.TopCenter
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OutlinedTextField(
-                    value = url,
-                    onValueChange = { url = it },
-                    modifier = Modifier.width(640.dp),
-                    placeholder = {
-                        Text(text = R.string.URL_INPUT_PLACEHOLDER)
-                    },
-                    singleLine = true
-                )
-                Spacer(Modifier.width(12.dp))
-                Button(
-                    onClick = { onPostUrl(url) },
-                    contentPadding = PaddingValues(vertical = 16.dp, horizontal = 22.dp)
+            Column {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(R.string.URL_SUBMIT)
+                    OutlinedTextField(
+                        value = url,
+                        onValueChange = { url = it },
+                        modifier = Modifier.width(640.dp),
+                        placeholder = {
+                            Text(text = R.string.URL_INPUT_PLACEHOLDER)
+                        },
+                        singleLine = true
+                    )
+                    Spacer(Modifier.width(12.dp))
+                    Button(
+                        onClick = { onPostUrl(url) },
+                        contentPadding = PaddingValues(vertical = 16.dp, horizontal = 22.dp)
+                    ) {
+                        Text(R.string.URL_SUBMIT)
+                    }
                 }
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    text = R.string.URL_EXAMPLE,
+                    color = Color.Gray,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Light,
+                    fontStyle = FontStyle.Italic
+                )
             }
         }
     }
