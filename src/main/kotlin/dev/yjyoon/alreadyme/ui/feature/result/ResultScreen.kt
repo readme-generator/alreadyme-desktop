@@ -128,7 +128,7 @@ fun ResultScreen(
                     }
                     Button(
                         onClick = {
-                            successDialogMessage = "Downloaded README.md successfully!"
+                            successDialogMessage = R.string.DOWNLOAD_COMPLETE
                             onDownload(readme.id)
                         },
                         contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp)
@@ -137,7 +137,7 @@ fun ResultScreen(
                     }
                     Button(
                         onClick = {
-                            successDialogMessage = "Pull requested to repository successfully!"
+                            successDialogMessage = R.string.PR_COMPLETE
                             onPullRequest(readme.id)
                         },
                         colors = ButtonDefaults.buttonColors(
