@@ -5,5 +5,6 @@ import dev.yjyoon.alreadyme.ui.model.Readme
 sealed interface MainUiState {
     object Waiting : MainUiState
     object Generating : MainUiState
-    data class Done(val readme: Readme) : MainUiState
+    data class Success(val readme: Readme) : MainUiState
+    data class Failure(val throwable: Throwable) : MainUiState
 }
