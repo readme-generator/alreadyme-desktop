@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import dev.yjyoon.alreadyme.ui.feature.failure.FailureScreen
 import dev.yjyoon.alreadyme.ui.feature.loading.LoadingScreen
 import dev.yjyoon.alreadyme.ui.feature.result.ResultScreen
 import dev.yjyoon.alreadyme.ui.feature.title.TitleScreen
@@ -51,11 +52,18 @@ fun MainScreen(
                 LoadingScreen()
             }
 
-            is MainUiState.Done -> {
+            is MainUiState.Success -> {
                 ResultScreen(
                     readme = uiState.readme,
                     onDownload = onDownload,
                     onPullRequest = onPullRequest,
+                    onBackToTitle = onBackToTitle
+                )
+            }
+
+            is MainUiState.Failure -> {
+                FailureScreen(
+                    throwable = uiState.throwable,
                     onBackToTitle = onBackToTitle
                 )
             }

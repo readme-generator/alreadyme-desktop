@@ -1,5 +1,6 @@
 package dev.yjyoon.alreadyme.data.repository
 
+import dev.yjyoon.alreadyme.data.exception.HttpException
 import dev.yjyoon.alreadyme.data.model.GitUrlRequest
 import dev.yjyoon.alreadyme.data.model.IdRequest
 import dev.yjyoon.alreadyme.data.model.MarkdownResponse
@@ -7,6 +8,7 @@ import dev.yjyoon.alreadyme.data.model.ReadmeResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.http.*
 import java.io.File
 import javax.inject.Inject
 
@@ -15,24 +17,44 @@ class ReadmeRepository @Inject constructor(
 ) {
 
     suspend fun generateReadme(url: String): Result<ReadmeResponse> = runCatching {
-        client.post("") {
+        val response = client.post("") {
             setBody(GitUrlRequest(url))
-        }.body() as ReadmeResponse
+        }
+        if (response.status != HttpStatusCode.Created) {
+            throw HttpException(
+                message = response.status.description,
+                statusCode = response.status.value
+            )
+        }
+        return Result.success(response.body() as ReadmeResponse)
     }
 
     suspend fun downloadReadme(id: Long): Result<Unit> = runCatching {
         val response = client.post("download") {
             setBody(IdRequest(id))
-        }.body() as MarkdownResponse
+        }
+        if (response.status != HttpStatusCode.OK) {
+            throw HttpException(
+                message = response.status.description,
+                statusCode = response.status.value
+            )
+        }
+        val responseBody: MarkdownResponse = response.body()
         val file = File.createTempFile("files", "index")
-        val markdown: ByteArray = client.get(response.objectUrl).body()
+        val markdown: ByteArray = client.get(responseBody.objectUrl).body()
         file.writeBytes(markdown)
         println("A file saved to ${file.path}")
     }
 
     suspend fun pullRequestReadme(id: Long): Result<Unit> = runCatching {
-        client.post("pull-request") {
+        val response = client.post("pull-request") {
             setBody(IdRequest(id))
+        }
+        if (response.status != HttpStatusCode.Created) {
+            throw HttpException(
+                message = response.status.description,
+                statusCode = response.status.value
+            )
         }
     }
 }
