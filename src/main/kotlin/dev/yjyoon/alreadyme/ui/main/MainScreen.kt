@@ -1,5 +1,6 @@
 package dev.yjyoon.alreadyme.ui.main
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -33,33 +34,34 @@ fun MainScreen(
     onCloseDialog: () -> Unit,
     onBackToTitle: () -> Unit
 ) {
+    Crossfade(targetState = uiState) {
+        when (it) {
+            MainUiState.Waiting -> {
+                TitleScreen(onPostUrl = onPostUrl)
+            }
 
-    when (uiState) {
-        MainUiState.Waiting -> {
-            TitleScreen(onPostUrl = onPostUrl)
-        }
+            MainUiState.Generating -> {
+                LoadingScreen()
+            }
 
-        MainUiState.Generating -> {
-            LoadingScreen()
-        }
+            is MainUiState.Success -> {
+                ResultScreen(
+                    readme = it.readme,
+                    isLoading = it.isLoading,
+                    showDialog = it.showDialog,
+                    onCloseDialog = onCloseDialog,
+                    onDownload = onDownload,
+                    onPullRequest = onPullRequest,
+                    onBackToTitle = onBackToTitle
+                )
+            }
 
-        is MainUiState.Success -> {
-            ResultScreen(
-                readme = uiState.readme,
-                isLoading = uiState.isLoading,
-                showDialog = uiState.showDialog,
-                onCloseDialog = onCloseDialog,
-                onDownload = onDownload,
-                onPullRequest = onPullRequest,
-                onBackToTitle = onBackToTitle
-            )
-        }
-
-        is MainUiState.Failure -> {
-            FailureScreen(
-                throwable = uiState.throwable,
-                onBackToTitle = onBackToTitle
-            )
+            is MainUiState.Failure -> {
+                FailureScreen(
+                    throwable = it.throwable,
+                    onBackToTitle = onBackToTitle
+                )
+            }
         }
     }
 }
