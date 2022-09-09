@@ -55,8 +55,17 @@ fun FailureScreen(
                 )
                 Spacer(Modifier.width(32.dp))
                 Column {
-                    Text(text = R.string.OOPS, fontWeight = FontWeight.Bold, fontSize = 92.sp, color = R.color.White)
-                    Text(text = R.string.ERROR_MESSAGE, fontSize = 28.sp, color = R.color.White)
+                    Text(
+                        text = R.string.OOPS,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 92.sp,
+                        color = MaterialTheme.colors.surface
+                    )
+                    Text(
+                        text = R.string.ERROR_MESSAGE,
+                        fontSize = 28.sp,
+                        color = MaterialTheme.colors.surface
+                    )
                 }
 
             }
