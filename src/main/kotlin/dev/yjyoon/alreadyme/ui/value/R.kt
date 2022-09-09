@@ -26,5 +26,10 @@ object R {
         const val BACK_TO_HOME = "Back to home"
         const val DOWNLOAD_DIRECTLY = "Download directly"
         const val PR_TO_REPOSITORY = "PR to repository"
+
+        const val OOPS = "Oops!"
+        const val ERROR_MESSAGE = "An unexpected error has occurred."
+        const val UNKNOWN = "Unknown"
+        const val TRY_AGAIN = "Please try again :("
     }
 }
