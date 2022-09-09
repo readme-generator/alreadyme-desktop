@@ -12,6 +12,7 @@ val Montserrat = FontFamily(
     Font("fonts/Montserrat-Bold.ttf", FontWeight.Bold),
     Font("fonts/Montserrat-Regular.ttf", FontWeight.Normal),
     Font("fonts/Montserrat-Medium.ttf", FontWeight.Medium),
+    Font("fonts/Montserrat-LightItalic.ttf", FontWeight.Light, FontStyle.Italic),
     Font("fonts/Montserrat-ExtraLight.ttf", FontWeight.ExtraLight, FontStyle.Normal),
     Font("fonts/Montserrat-ExtraLightItalic.ttf", FontWeight.ExtraLight, FontStyle.Italic)
 )
