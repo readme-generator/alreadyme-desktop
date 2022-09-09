@@ -19,8 +19,10 @@ object R {
         const val APP_DESCRIPTION = "The easiest way to build a README.md for your git repository"
 
         const val URL_INPUT_PLACEHOLDER = "Input your git repository URL here"
+        const val URL_EXAMPLE = "ex) https://github.com/readme-generator/alreadyme-desktop.git"
         const val URL_SUBMIT = "Get README.md"
 
+        const val CREATING_README = "Creating README.md..."
         const val README_CREATED = "README.md has been created successfully!"
 
         const val BACK_TO_HOME = "Back to home"
@@ -31,5 +33,9 @@ object R {
         const val ERROR_MESSAGE = "An unexpected error has occurred."
         const val UNKNOWN = "Unknown"
         const val TRY_AGAIN = "Please try again :("
+
+        const val DOWNLOAD_COMPLETE = "Downloaded README.md successfully!"
+        const val PR_COMPLETE = "Pull requested to repository successfully!"
+        const val CONFIRM = "Confirm"
     }
 }

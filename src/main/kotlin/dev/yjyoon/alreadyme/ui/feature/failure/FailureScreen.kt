@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -49,16 +50,26 @@ fun FailureScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource("drawables/oops.png"),
+                    painter = painterResource("drawables/img_oops.png"),
                     contentDescription = null,
                     modifier = Modifier.size(128.dp).padding(top = 12.dp)
                 )
                 Spacer(Modifier.width(32.dp))
                 Column {
-                    Text(text = R.string.OOPS, fontWeight = FontWeight.Bold, fontSize = 92.sp, color = R.color.White)
-                    Text(text = R.string.ERROR_MESSAGE, fontSize = 28.sp, color = R.color.White)
+                    Text(
+                        text = R.string.OOPS,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 92.sp,
+                        color = MaterialTheme.colors.surface
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = R.string.ERROR_MESSAGE,
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.Light,
+                        color = MaterialTheme.colors.surface
+                    )
                 }
-
             }
         }
         Box(

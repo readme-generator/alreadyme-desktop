@@ -1,16 +1,10 @@
 package dev.yjyoon.alreadyme.ui.main
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
+import androidx.compose.animation.Crossfade
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import dev.yjyoon.alreadyme.ui.feature.failure.FailureScreen
 import dev.yjyoon.alreadyme.ui.feature.loading.LoadingScreen
 import dev.yjyoon.alreadyme.ui.feature.result.ResultScreen
@@ -26,6 +20,7 @@ fun MainScreen(viewModel: MainViewModel) {
         onPostUrl = { url: String -> viewModel.postUrl(scope, url) },
         onDownload = { id: Long -> viewModel.downloadReadme(scope, id) },
         onPullRequest = { id: Long -> viewModel.pullRequestReadme(scope, id) },
+        onCloseDialog = viewModel::closeDialog,
         onBackToTitle = viewModel::backToTitle
     )
 }
@@ -36,14 +31,11 @@ fun MainScreen(
     onPostUrl: (String) -> Unit,
     onDownload: (Long) -> Unit,
     onPullRequest: (Long) -> Unit,
+    onCloseDialog: () -> Unit,
     onBackToTitle: () -> Unit
 ) {
-    Column(
-        Modifier.fillMaxSize().background(color = MaterialTheme.colors.background),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        when (uiState) {
+    Crossfade(targetState = uiState) {
+        when (it) {
             MainUiState.Waiting -> {
                 TitleScreen(onPostUrl = onPostUrl)
             }
@@ -54,7 +46,10 @@ fun MainScreen(
 
             is MainUiState.Success -> {
                 ResultScreen(
-                    readme = uiState.readme,
+                    readme = it.readme,
+                    isLoading = it.isLoading,
+                    actionDialog = it.actionDialog,
+                    onCloseDialog = onCloseDialog,
                     onDownload = onDownload,
                     onPullRequest = onPullRequest,
                     onBackToTitle = onBackToTitle
@@ -63,7 +58,7 @@ fun MainScreen(
 
             is MainUiState.Failure -> {
                 FailureScreen(
-                    throwable = uiState.throwable,
+                    throwable = it.throwable,
                     onBackToTitle = onBackToTitle
                 )
             }
