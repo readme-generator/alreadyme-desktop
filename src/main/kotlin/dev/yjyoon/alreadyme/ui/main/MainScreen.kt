@@ -48,7 +48,7 @@ fun MainScreen(
                 ResultScreen(
                     readme = it.readme,
                     isLoading = it.isLoading,
-                    showDialog = it.showDialog,
+                    actionDialog = it.actionDialog,
                     onCloseDialog = onCloseDialog,
                     onDownload = onDownload,
                     onPullRequest = onPullRequest,

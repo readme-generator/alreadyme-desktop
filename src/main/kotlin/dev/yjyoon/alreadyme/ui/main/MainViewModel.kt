@@ -3,6 +3,7 @@ package dev.yjyoon.alreadyme.ui.main
 import dev.yjyoon.alreadyme.data.exception.toHttpException
 import dev.yjyoon.alreadyme.data.model.toReadme
 import dev.yjyoon.alreadyme.data.repository.ReadmeRepository
+import dev.yjyoon.alreadyme.ui.value.R
 import io.ktor.client.plugins.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,7 +38,10 @@ class MainViewModel @Inject constructor(
                     _uiState.update {
                         (it as MainUiState.Success).copy(
                             isLoading = false,
-                            showDialog = true
+                            actionDialog = MainUiState.Success.ActionDialog(
+                                isVisible = true,
+                                message = R.string.DOWNLOAD_COMPLETE
+                            )
                         )
                     }
                 }
@@ -54,7 +58,10 @@ class MainViewModel @Inject constructor(
                     _uiState.update {
                         (it as MainUiState.Success).copy(
                             isLoading = false,
-                            showDialog = true
+                            actionDialog = MainUiState.Success.ActionDialog(
+                                isVisible = true,
+                                message = R.string.PR_COMPLETE
+                            )
                         )
                     }
                 }
@@ -64,7 +71,9 @@ class MainViewModel @Inject constructor(
     }
 
     fun closeDialog() {
-        _uiState.update { (it as MainUiState.Success).copy(showDialog = false) }
+        _uiState.update {
+            (it as MainUiState.Success).copy(actionDialog = MainUiState.Success.ActionDialog.NONE)
+        }
     }
 
     private fun onHttpRequestFailure(throwable: Throwable) {

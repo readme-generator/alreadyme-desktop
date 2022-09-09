@@ -28,10 +28,6 @@ import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -42,6 +38,7 @@ import com.mikepenz.markdown.Markdown
 import com.mikepenz.markdown.MarkdownDefaults
 import dev.yjyoon.alreadyme.ui.component.AlreadymeDialog
 import dev.yjyoon.alreadyme.ui.component.AlreadymeLoading
+import dev.yjyoon.alreadyme.ui.main.MainUiState.Success.ActionDialog
 import dev.yjyoon.alreadyme.ui.model.Readme
 import dev.yjyoon.alreadyme.ui.value.MarkdownTypography
 import dev.yjyoon.alreadyme.ui.value.R
@@ -50,14 +47,13 @@ import dev.yjyoon.alreadyme.ui.value.R
 fun ResultScreen(
     readme: Readme,
     isLoading: Boolean,
-    showDialog: Boolean,
+    actionDialog: ActionDialog,
     onCloseDialog: () -> Unit,
     onDownload: (Long) -> Unit,
     onPullRequest: (Long) -> Unit,
     onBackToTitle: () -> Unit
 ) {
     val scrollState = rememberScrollState()
-    var successDialogMessage by remember { mutableStateOf("") }
 
     Scaffold(
         bottomBar = {
@@ -83,20 +79,14 @@ fun ResultScreen(
                         Text(text = R.string.BACK_TO_HOME)
                     }
                     Button(
-                        onClick = {
-                            successDialogMessage = R.string.DOWNLOAD_COMPLETE
-                            onDownload(readme.id)
-                        },
+                        onClick = { onDownload(readme.id) },
                         contentPadding = PaddingValues(vertical = 18.dp, horizontal = 28.dp),
                         enabled = !isLoading
                     ) {
                         Text(text = R.string.DOWNLOAD_DIRECTLY)
                     }
                     Button(
-                        onClick = {
-                            successDialogMessage = R.string.PR_COMPLETE
-                            onPullRequest(readme.id)
-                        },
+                        onClick = { onPullRequest(readme.id) },
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = R.color.Green,
                             contentColor = R.color.White
@@ -232,7 +222,7 @@ See https://github.com/JetBrains/compose-jb/releases/latest for the latest stabl
                     AlreadymeLoading(size = 40f)
                 }
             }
-            if (showDialog) {
+            if (actionDialog.isVisible) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -240,7 +230,7 @@ See https://github.com/JetBrains/compose-jb/releases/latest for the latest stabl
                         .clickable(enabled = false, onClick = {}),
                     contentAlignment = Alignment.Center
                 ) {
-                    AlreadymeDialog(message = successDialogMessage, onClose = onCloseDialog)
+                    AlreadymeDialog(message = actionDialog.message ?: "", onClose = onCloseDialog)
                 }
             }
         }
