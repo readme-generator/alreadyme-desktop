@@ -1,6 +1,7 @@
 package dev.yjyoon.alreadyme.ui.feature.title
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -24,7 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,23 +52,31 @@ fun TitleScreen(
                 .padding(36.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = R.string.APP_TITLE,
-                    color = MaterialTheme.colors.surface,
-                    fontSize = 54.sp,
-                    fontWeight = FontWeight.Bold
+                Image(
+                    painter = painterResource("drawables/img_logo.png"),
+                    contentDescription = null,
+                    modifier = Modifier.size(128.dp).padding(top = 12.dp)
                 )
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    text = R.string.APP_DESCRIPTION,
-                    color = MaterialTheme.colors.surface,
-                    fontSize = 22.sp,
-                    fontStyle = FontStyle.Italic,
-                    fontWeight = FontWeight.ExtraLight
-                )
+                Spacer(Modifier.width(32.dp))
+                Column {
+                    Text(
+                        text = R.string.APP_TITLE,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 72.sp,
+                        color = MaterialTheme.colors.surface
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = R.string.APP_DESCRIPTION,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Light,
+                        color = MaterialTheme.colors.surface
+                    )
+                }
             }
         }
         Box(
