@@ -15,7 +15,7 @@ fun main() = application {
         state = WindowState(
             position = WindowPosition(Alignment.Center),
             width = 1280.dp,
-            height = 800.dp
+            height = 768.dp
         )
     ) {
         App()
