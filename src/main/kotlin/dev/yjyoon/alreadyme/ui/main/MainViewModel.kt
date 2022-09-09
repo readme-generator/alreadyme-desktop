@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,22 +29,42 @@ class MainViewModel @Inject constructor(
     }
 
     fun downloadReadme(scope: CoroutineScope, id: Long) {
+        _uiState.update { (it as MainUiState.Success).copy(isLoading = true) }
+
         scope.launch {
             readmeRepository.downloadReadme(id)
+                .onSuccess {
+                    _uiState.update {
+                        (it as MainUiState.Success).copy(
+                            isLoading = false,
+                            showDialog = true
+                        )
+                    }
+                }
                 .onFailure { onHttpRequestFailure(it) }
         }
     }
 
     fun pullRequestReadme(scope: CoroutineScope, id: Long) {
+        _uiState.update { (it as MainUiState.Success).copy(isLoading = true) }
+
         scope.launch {
             readmeRepository.pullRequestReadme(id)
+                .onSuccess {
+                    _uiState.update {
+                        (it as MainUiState.Success).copy(
+                            isLoading = false,
+                            showDialog = true
+                        )
+                    }
+                }
                 .onFailure { onHttpRequestFailure(it) }
 
         }
     }
 
-    fun backToTitle() {
-        _uiState.value = MainUiState.Waiting
+    fun closeDialog() {
+        _uiState.update { (it as MainUiState.Success).copy(showDialog = false) }
     }
 
     private fun onHttpRequestFailure(throwable: Throwable) {
@@ -55,5 +76,9 @@ class MainViewModel @Inject constructor(
                     throwable
                 }
             )
+    }
+
+    fun backToTitle() {
+        _uiState.value = MainUiState.Waiting
     }
 }
