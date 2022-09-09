@@ -49,7 +49,7 @@ fun FailureScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource("drawables/oops.png"),
+                    painter = painterResource("drawables/img_oops.png"),
                     contentDescription = null,
                     modifier = Modifier.size(128.dp).padding(top = 12.dp)
                 )

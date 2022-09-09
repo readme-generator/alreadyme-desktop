@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -26,7 +25,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,7 +37,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
 import com.mikepenz.markdown.Markdown
 import com.mikepenz.markdown.MarkdownDefaults
 import dev.yjyoon.alreadyme.ui.component.AlreadymeDialog
@@ -162,7 +159,7 @@ fun ResultScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(color = R.color.DarkGray.copy(alpha = 0.5f))
+                    .background(color = R.color.DarkGray.copy(alpha = 0.67f))
                     .clickable(enabled = false, onClick = {}),
                 contentAlignment = Alignment.Center
             ) {
@@ -170,14 +167,14 @@ fun ResultScreen(
             }
         }
         if (showDialog) {
-            Dialog(onCloseRequest = onCloseDialog) {
-                Surface(
-                    modifier = Modifier.width(200.dp)
-                        .wrapContentHeight(),
-                    color = MaterialTheme.colors.surface
-                ) {
-                    AlreadymeDialog(message = successDialogMessage, onClose = onCloseDialog)
-                }
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = R.color.DarkGray.copy(alpha = 0.67f))
+                    .clickable(enabled = false, onClick = {}),
+                contentAlignment = Alignment.Center
+            ) {
+                AlreadymeDialog(message = successDialogMessage, onClose = onCloseDialog)
             }
         }
     }
