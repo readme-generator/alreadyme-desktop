@@ -64,9 +64,9 @@ fun ResultScreen(
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .height(150.dp)
+                    .height(120.dp)
                     .background(color = MaterialTheme.colors.onSurface)
-                    .padding(36.dp),
+                    .padding(vertical = 30.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Row(
@@ -130,10 +130,9 @@ fun ResultScreen(
                 Box(
                     Modifier
                         .fillMaxWidth()
-                        .height(150.dp)
-                        .background(color = MaterialTheme.colors.onSurface)
-                        .padding(36.dp),
-                    contentAlignment = Alignment.Center
+                        .height(90.dp)
+                        .background(color = MaterialTheme.colors.onSurface),
+                    contentAlignment = Alignment.TopCenter
                 ) {
                     Text(
                         text = R.string.README_CREATED,
@@ -145,7 +144,7 @@ fun ResultScreen(
                 Spacer(Modifier.height(32.dp))
                 Card(
                     shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(width = 2.dp, color = R.color.LightGray),
+                    border = BorderStroke(width = 2.dp, color = R.color.DarkGray.copy(alpha = 0.12f)),
                     modifier = Modifier.fillMaxHeight().width(980.dp),
                 ) {
                     Markdown(
