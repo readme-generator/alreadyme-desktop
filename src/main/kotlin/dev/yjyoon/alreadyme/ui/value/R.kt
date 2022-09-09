@@ -21,6 +21,7 @@ object R {
         const val URL_INPUT_PLACEHOLDER = "Input your git repository URL here"
         const val URL_SUBMIT = "Get README.md"
 
+        const val CREATING_README = "Creating README.md..."
         const val README_CREATED = "README.md has been created successfully!"
 
         const val BACK_TO_HOME = "Back to home"
@@ -31,5 +32,7 @@ object R {
         const val ERROR_MESSAGE = "An unexpected error has occurred."
         const val UNKNOWN = "Unknown"
         const val TRY_AGAIN = "Please try again :("
+
+        const val CONFIRM = "Confirm"
     }
 }
