@@ -1,10 +1,12 @@
 package dev.yjyoon.alreadyme.data.repository
 
+import dev.yjyoon.alreadyme.data.exception.CommonException
 import dev.yjyoon.alreadyme.data.exception.HttpException
 import dev.yjyoon.alreadyme.data.model.GitUrlRequest
 import dev.yjyoon.alreadyme.data.model.IdRequest
 import dev.yjyoon.alreadyme.data.model.MarkdownResponse
 import dev.yjyoon.alreadyme.data.model.ReadmeResponse
+import dev.yjyoon.alreadyme.ui.value.R
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -20,12 +22,13 @@ class ReadmeRepository @Inject constructor(
         val response = client.post("") {
             setBody(GitUrlRequest(url))
         }
-        if (response.status != HttpStatusCode.Created) {
+        if (response.status != HttpStatusCode.OK) {
             throw HttpException(
-                message = response.status.description,
+                message = CommonException.message[response.status.value] ?: R.string.UNDEFINED_ERROR,
                 statusCode = response.status.value
             )
         }
+
         return Result.success(response.body() as ReadmeResponse)
     }
 
@@ -35,7 +38,7 @@ class ReadmeRepository @Inject constructor(
         }
         if (response.status != HttpStatusCode.OK) {
             throw HttpException(
-                message = response.status.description,
+                message = CommonException.message[response.status.value] ?: R.string.UNDEFINED_ERROR,
                 statusCode = response.status.value
             )
         }
@@ -50,9 +53,9 @@ class ReadmeRepository @Inject constructor(
         val response = client.post("pull-request") {
             setBody(IdRequest(id))
         }
-        if (response.status != HttpStatusCode.Created) {
+        if (response.status != HttpStatusCode.OK) {
             throw HttpException(
-                message = response.status.description,
+                message = CommonException.message[response.status.value] ?: R.string.UNDEFINED_ERROR,
                 statusCode = response.status.value
             )
         }

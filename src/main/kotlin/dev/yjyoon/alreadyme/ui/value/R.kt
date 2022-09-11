@@ -32,6 +32,7 @@ object R {
         const val OOPS = "Oops!"
         const val ERROR_MESSAGE = "An unexpected error has occurred."
         const val UNKNOWN = "Unknown"
+        const val UNDEFINED_ERROR = "Undefined Error"
         const val TRY_AGAIN = "Please try again :("
 
         const val DOWNLOAD_COMPLETE = "Downloaded README.md successfully!"
