@@ -19,7 +19,7 @@ object R {
         const val APP_DESCRIPTION = "The easiest way to build a README.md for your git repository"
 
         const val URL_INPUT_PLACEHOLDER = "Input your git repository URL here"
-        const val URL_EXAMPLE = "ex) https://github.com/readme-generator/alreadyme-desktop.git"
+        const val URL_EXAMPLE = "ex) https://github.com/readme-generator/alreadyme-desktop"
         const val URL_SUBMIT = "Get README.md"
 
         const val CREATING_README = "Creating README.md..."
