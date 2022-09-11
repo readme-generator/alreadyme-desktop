@@ -41,8 +41,8 @@ class DataModule {
 
         // Timeout
         install(HttpTimeout) {
-            requestTimeoutMillis = 15_000L
-            connectTimeoutMillis = 15_000L
+            requestTimeoutMillis = 60_000L
+            connectTimeoutMillis = 60_000L
         }
 
         // Logging
