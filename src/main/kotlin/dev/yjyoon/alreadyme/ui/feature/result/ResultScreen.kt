@@ -113,6 +113,7 @@ fun ResultScreen(
         ) {
             Column(
                 modifier = Modifier
+                    .fillMaxHeight()
                     .verticalScroll(scrollState)
                     .padding(innerPadding),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -131,11 +132,13 @@ fun ResultScreen(
                         fontWeight = FontWeight.Bold
                     )
                 }
-                Spacer(Modifier.height(32.dp))
                 Card(
+                    modifier = Modifier
+                        .padding(vertical = 32.dp)
+                        .fillMaxHeight()
+                        .width(980.dp),
                     shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(width = 2.dp, color = R.color.DarkGray.copy(alpha = 0.12f)),
-                    modifier = Modifier.fillMaxHeight().width(980.dp),
+                    border = BorderStroke(width = 2.dp, color = R.color.DarkGray.copy(alpha = 0.12f))
                 ) {
                     Markdown(
                         content = readme.rawText,
@@ -152,7 +155,6 @@ fun ResultScreen(
                         )
                     )
                 }
-                Spacer(Modifier.height(32.dp))
             }
             if (isLoading) {
                 Box(

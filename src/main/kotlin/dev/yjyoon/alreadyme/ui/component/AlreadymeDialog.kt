@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
@@ -25,20 +23,18 @@ fun AlreadymeDialog(
     onClose: () -> Unit
 ) {
     Surface(
-        modifier = Modifier
-            .width(480.dp)
-            .wrapContentHeight(),
         color = MaterialTheme.colors.surface
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(vertical = 16.dp, horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = R.string.APP_TITLE,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(24.dp)
+                modifier = Modifier.padding(20.dp)
             )
+            Spacer(modifier = Modifier.height(4.dp))
             Text(text = message)
             Spacer(modifier = Modifier.height(24.dp))
             Button(
