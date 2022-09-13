@@ -35,7 +35,7 @@ object R {
         const val UNDEFINED_ERROR = "Undefined Error"
         const val TRY_AGAIN = "Please try again :("
 
-        const val DOWNLOAD_COMPLETE = "Downloaded README.md successfully!"
+        const val DOWNLOAD_COMPLETE = "README.md has been downloaded successfully!"
         const val PR_COMPLETE = "Pull requested to repository successfully!"
         const val CONFIRM = "Confirm"
     }
