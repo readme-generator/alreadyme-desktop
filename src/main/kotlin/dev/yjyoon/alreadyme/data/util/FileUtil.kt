@@ -32,7 +32,8 @@ object FileUtil {
             override fun setVisible(value: Boolean) {
                 super.setVisible(value)
                 if (value) {
-                    callback(directory, file)
+                    if (directory == null || file == null) throw FileSavingCanceledException
+                    else callback(directory, file)
                 }
             }
         }.apply {
@@ -45,3 +46,5 @@ object FileUtil {
         fileDialog.isVisible = true
     }
 }
+
+object FileSavingCanceledException : IllegalArgumentException()

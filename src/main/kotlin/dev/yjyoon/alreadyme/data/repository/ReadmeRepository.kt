@@ -56,7 +56,7 @@ class ReadmeRepository @Inject constructor(
         val response = client.post("pull-request") {
             setBody(IdRequest(id))
         }
-        
+
         if (response.status != HttpStatusCode.OK) {
             throw HttpException(
                 message = CommonException.message[response.status.value] ?: R.string.UNDEFINED_ERROR,

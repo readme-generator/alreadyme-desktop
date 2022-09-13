@@ -3,6 +3,7 @@ package dev.yjyoon.alreadyme.ui.main
 import dev.yjyoon.alreadyme.data.exception.toHttpException
 import dev.yjyoon.alreadyme.data.model.toReadme
 import dev.yjyoon.alreadyme.data.repository.ReadmeRepository
+import dev.yjyoon.alreadyme.data.util.FileSavingCanceledException
 import dev.yjyoon.alreadyme.ui.value.R
 import io.ktor.client.plugins.*
 import kotlinx.coroutines.CoroutineScope
@@ -45,7 +46,21 @@ class MainViewModel @Inject constructor(
                         )
                     }
                 }
-                .onFailure { onHttpRequestFailure(it) }
+                .onFailure { throwable ->
+                    when (throwable) {
+                        is FileSavingCanceledException -> {
+                            _uiState.update {
+                                (it as MainUiState.Success).copy(
+                                    isLoading = false,
+                                )
+                            }
+                        }
+
+                        else -> {
+                            onHttpRequestFailure(throwable)
+                        }
+                    }
+                }
         }
     }
 
