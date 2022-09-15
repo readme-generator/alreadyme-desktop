@@ -1,5 +1,7 @@
 ![image](https://user-images.githubusercontent.com/72238126/190327489-31753722-2449-4889-9544-a811acb5577f.png)
-# ALREADYME.md Desktop Application Repository
+<h1 align="center">ALREADYME.md Desktop Application</h1>
+
+<p align="center">
 <a href="https://github.com/readme-generator/alreadyme-desktop">
 	<img alt="GitHub issues" src="https://img.shields.io/github/issues/readme-generator/alreadyme-desktop">
 </a>
@@ -12,8 +14,13 @@
 <a href="https://www.codefactor.io/repository/github/readme-generator/alreadyme-desktop/overview/develop">
 	<img src="https://www.codefactor.io/repository/github/readme-generator/alreadyme-desktop/badge/develop" alt="CodeFactor" />
 </a>
-   
-<br>
+<br><br>
+<em><b>An easiest way to build README.md for your repository</b></em>
+</p>
+
+---
+
+# Introduction
 
 ALREADYME is a multiplatform desktop application which create a README.md. If you input your github repository, it will analyze source codes of the repository and create README.md using AI. Let's create README.md of repository with only one-click.
 
