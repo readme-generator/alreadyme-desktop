@@ -1,9 +1,12 @@
 package dev.yjyoon.alreadyme.ui.main
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import dev.yjyoon.alreadyme.data.exception.toHttpException
-import dev.yjyoon.alreadyme.data.model.toReadme
 import dev.yjyoon.alreadyme.data.repository.ReadmeRepository
 import dev.yjyoon.alreadyme.data.util.FileSavingCanceledException
+import dev.yjyoon.alreadyme.ui.model.Readme
 import dev.yjyoon.alreadyme.ui.value.R
 import io.ktor.client.plugins.*
 import kotlinx.coroutines.CoroutineScope
@@ -21,12 +24,19 @@ class MainViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<MainUiState>(MainUiState.Waiting)
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
+    var generatingReadme by mutableStateOf("")
+        private set
+
     fun postUrl(scope: CoroutineScope, url: String) {
         scope.launch {
             _uiState.value = MainUiState.Generating
-            readmeRepository.generateReadme(url)
-                .onSuccess { _uiState.value = MainUiState.Success(readme = it.toReadme()) }
-                .onFailure { onHttpRequestFailure(it) }
+            readmeRepository.postUrl(
+                url = url,
+                onReceive = { generatingReadme += it },
+                onComplete = {
+                    _uiState.value = MainUiState.Success(readme = Readme(id = 0, rawText = generatingReadme))
+                }
+            ).onFailure { onHttpRequestFailure(it) }
         }
     }
 
