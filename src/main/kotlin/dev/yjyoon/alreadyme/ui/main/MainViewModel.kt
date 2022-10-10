@@ -114,5 +114,6 @@ class MainViewModel @Inject constructor(
 
     fun backToTitle() {
         _uiState.value = MainUiState.Waiting
+        generatingReadme = ""
     }
 }

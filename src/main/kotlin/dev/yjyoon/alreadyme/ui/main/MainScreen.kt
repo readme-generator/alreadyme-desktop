@@ -17,6 +17,7 @@ fun MainScreen(viewModel: MainViewModel) {
 
     MainScreen(
         uiState = uiState,
+        generatingReadme = viewModel.generatingReadme,
         onPostUrl = { url: String -> viewModel.postUrl(scope, url) },
         onDownload = { id: Long -> viewModel.downloadReadme(scope, id) },
         onPullRequest = { id: Long -> viewModel.pullRequestReadme(scope, id) },
@@ -28,6 +29,7 @@ fun MainScreen(viewModel: MainViewModel) {
 @Composable
 fun MainScreen(
     uiState: MainUiState,
+    generatingReadme: String,
     onPostUrl: (String) -> Unit,
     onDownload: (Long) -> Unit,
     onPullRequest: (Long) -> Unit,
@@ -41,7 +43,7 @@ fun MainScreen(
             }
 
             MainUiState.Generating -> {
-                LoadingScreen()
+                LoadingScreen(generatingReadme)
             }
 
             is MainUiState.Success -> {
