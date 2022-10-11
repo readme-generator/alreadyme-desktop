@@ -6,6 +6,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import dev.yjyoon.alreadyme.ui.feature.failure.FailureScreen
+import dev.yjyoon.alreadyme.ui.feature.loading.GeneratingScreen
 import dev.yjyoon.alreadyme.ui.feature.loading.LoadingScreen
 import dev.yjyoon.alreadyme.ui.feature.result.ResultScreen
 import dev.yjyoon.alreadyme.ui.feature.title.TitleScreen
@@ -42,8 +43,12 @@ fun MainScreen(
                 TitleScreen(onPostUrl = onPostUrl)
             }
 
+            MainUiState.Loading -> {
+                LoadingScreen()
+            }
+
             MainUiState.Generating -> {
-                LoadingScreen(generatingReadme)
+                GeneratingScreen(generatingReadme)
             }
 
             is MainUiState.Success -> {

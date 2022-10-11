@@ -29,9 +29,10 @@ class MainViewModel @Inject constructor(
 
     fun postUrl(scope: CoroutineScope, url: String) {
         scope.launch {
-            _uiState.value = MainUiState.Generating
+            _uiState.value = MainUiState.Loading
             readmeRepository.postUrl(
                 url = url,
+                onGenerate = { _uiState.value = MainUiState.Generating },
                 onReceive = { generatingReadme += it },
                 onComplete = {
                     _uiState.value = MainUiState.Success(readme = Readme(id = 0, rawText = generatingReadme))

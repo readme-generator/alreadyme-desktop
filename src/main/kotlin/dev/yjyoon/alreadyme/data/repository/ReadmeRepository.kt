@@ -2,6 +2,8 @@ package dev.yjyoon.alreadyme.data.repository
 
 import dev.yjyoon.alreadyme.data.exception.CommonException
 import dev.yjyoon.alreadyme.data.exception.HttpException
+import dev.yjyoon.alreadyme.data.model.GitUrlRequest
+import dev.yjyoon.alreadyme.data.model.GitUrlResponse
 import dev.yjyoon.alreadyme.data.model.IdRequest
 import dev.yjyoon.alreadyme.data.model.MarkdownResponse
 import dev.yjyoon.alreadyme.data.util.FileUtil.openFileDialog
@@ -22,34 +24,50 @@ class ReadmeRepository @Inject constructor(
     private val client: HttpClient
 ) {
 
-    suspend fun postUrl(url: String, onReceive: (String) -> Unit, onComplete: () -> Unit): Result<Unit> = runCatching {
-//        val response = client.post("") {
-//            setBody(GitUrlRequest(url))
-//        }
-//
-//        if (response.status != HttpStatusCode.OK) {
-//            throw HttpException(
-//                message = CommonException.message[response.status.value] ?: R.string.UNDEFINED_ERROR,
-//                statusCode = response.status.value
-//            )
-//        }
+    suspend fun postUrl(
+        url: String,
+        onGenerate: () -> Unit,
+        onReceive: (String) -> Unit,
+        onComplete: () -> Unit
+    ): Result<Unit> = runCatching {
+        val response = client.post("") {
+            setBody(GitUrlRequest(url))
+        }
 
-        return generateReadme(onReceive, onComplete)
+        if (response.status != HttpStatusCode.OK) {
+            throw HttpException(
+                message = CommonException.message[response.status.value] ?: R.string.UNDEFINED_ERROR,
+                statusCode = response.status.value
+            )
+        }
+
+        val responseBody: GitUrlResponse = response.body()
+        val id = responseBody.id
+
+        onGenerate()
+
+        return generateReadme(id, onReceive, onComplete)
     }
 
-    private suspend fun generateReadme(onReceive: (String) -> Unit, onComplete: () -> Unit): Result<Unit> =
+    private suspend fun generateReadme(
+        id: Long,
+        onReceive: (String) -> Unit,
+        onComplete: () -> Unit
+    ): Result<Unit> =
         runCatching {
             val selectorManager = SelectorManager(Dispatchers.IO)
             val socket = aSocket(selectorManager).tcp().connect("127.0.0.1", 9002)
 
             val receiveChannel = socket.openReadChannel()
+            val sendChannel = socket.openWriteChannel(autoFlush = true)
+
+            sendChannel.writeStringUtf8(id.toString())
 
             withContext(Dispatchers.IO) {
                 while (true) {
-                    val text = receiveChannel.readUTF8Line()
+                    val text = receiveChannel.readUTF8Line() ?: ""
 
-                    //TODO: Socket 프로토콜 정의
-                    if (text != null) {
+                    if (text != "") {
                         onReceive(text)
                         print(text)
                     } else {
