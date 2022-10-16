@@ -11,13 +11,10 @@ import dev.yjyoon.alreadyme.data.util.FileUtil.saveFile
 import dev.yjyoon.alreadyme.ui.value.R
 import io.ktor.client.*
 import io.ktor.client.call.*
+import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import io.ktor.network.selector.*
-import io.ktor.network.sockets.*
-import io.ktor.utils.io.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import io.ktor.websocket.*
 import javax.inject.Inject
 
 class ReadmeRepository @Inject constructor(
@@ -55,28 +52,28 @@ class ReadmeRepository @Inject constructor(
         onComplete: () -> Unit
     ): Result<Unit> =
         runCatching {
-            val selectorManager = SelectorManager(Dispatchers.IO)
-            val socket = aSocket(selectorManager).tcp().connect("127.0.0.1", 9002)
+            client.webSocket(
+                method = HttpMethod.Get,
+                host = "35.223.167.76",
+                port = 5558,
+                path = "/api/v2/generate/stream"
+            ) {
+                send(id.toString())
 
-            val receiveChannel = socket.openReadChannel()
-            val sendChannel = socket.openWriteChannel(autoFlush = true)
-
-            sendChannel.writeStringUtf8(id.toString())
-
-            withContext(Dispatchers.IO) {
                 while (true) {
-                    val text = receiveChannel.readUTF8Line() ?: ""
+                    val incoming = incoming.receive() as? Frame.Text
+                    val text = incoming?.readText() ?: ""
 
-                    if (text != "") {
-                        onReceive(text)
-                        print(text)
-                    } else {
-                        socket.close()
-                        selectorManager.close()
+                    if (text == "") {
                         onComplete()
+                        break
                     }
+
+                    onReceive(text)
                 }
             }
+
+            client.close()
         }
 
     suspend fun downloadReadme(id: Long): Result<Unit> = runCatching {

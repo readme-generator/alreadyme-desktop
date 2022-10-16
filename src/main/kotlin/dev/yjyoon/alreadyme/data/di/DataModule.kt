@@ -7,6 +7,7 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -26,7 +27,6 @@ class DataModule {
             accept(ContentType.Application.Json)
             contentType(ContentType.Application.Json)
         }
-
         // Json serializer
         install(ContentNegotiation) {
             json(
@@ -37,6 +37,11 @@ class DataModule {
                     encodeDefaults = true // null인 값의 json 포함 여부
                 }
             )
+        }
+
+        // WebSockets
+        install(WebSockets) {
+            pingInterval = 20_000
         }
 
         // Timeout
