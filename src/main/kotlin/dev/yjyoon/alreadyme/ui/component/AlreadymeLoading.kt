@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AlreadymeLoading(
+    modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colors.surface,
     size: Float = 80f
 ) {
@@ -46,7 +47,7 @@ fun AlreadymeLoading(
         }
     })
 
-    Canvas(modifier = Modifier.wrapContentSize().padding((size / 1.5).dp)) {
+    Canvas(modifier = modifier.then(Modifier.wrapContentSize().padding((size / 1.5).dp))) {
         val topLeft = Offset(this.center.x - (size / 2), this.center.y - (size / 2))
         rotate(degrees = rotation) {
             drawRect(

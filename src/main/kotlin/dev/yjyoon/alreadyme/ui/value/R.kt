@@ -22,6 +22,7 @@ object R {
         const val URL_EXAMPLE = "ex) https://github.com/readme-generator/alreadyme-desktop"
         const val URL_SUBMIT = "Get README.md"
 
+        const val ANALYZING_REPOSITORY = "Analyzing Github Repository..."
         const val CREATING_README = "Creating README.md..."
         const val README_CREATED = "README.md has been created successfully!"
 
@@ -37,6 +38,9 @@ object R {
 
         const val DOWNLOAD_COMPLETE = "README.md has been downloaded successfully!"
         const val PR_COMPLETE = "Pull requested to repository successfully!"
+        const val VIEW_ON_GITHUB = "View on Github"
+        const val ALREADY_PR = "You have already pull requested README.md to repository!"
         const val CONFIRM = "Confirm"
+        const val CLOSE = "Close"
     }
 }

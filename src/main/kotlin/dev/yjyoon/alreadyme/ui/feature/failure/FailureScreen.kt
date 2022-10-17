@@ -80,7 +80,7 @@ fun FailureScreen(
             contentAlignment = Alignment.TopCenter
         ) {
             val statusCode = if (throwable is HttpException) {
-                throwable.statusCode.toString()
+                throwable.code.toString()
             } else {
                 R.string.UNKNOWN
             }
@@ -88,7 +88,7 @@ fun FailureScreen(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = "$statusCode: ${throwable.message}")
+                Text(text = "[$statusCode] ${throwable.message}")
                 Text(text = "\n${R.string.TRY_AGAIN}")
                 Spacer(Modifier.weight(1f))
                 OutlinedButton(

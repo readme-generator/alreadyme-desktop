@@ -41,7 +41,7 @@ fun LoadingScreen() {
             contentAlignment = Alignment.TopCenter
         ) {
             Text(
-                text = R.string.CREATING_README,
+                text = R.string.ANALYZING_REPOSITORY,
                 color = MaterialTheme.colors.onSurface,
             )
         }

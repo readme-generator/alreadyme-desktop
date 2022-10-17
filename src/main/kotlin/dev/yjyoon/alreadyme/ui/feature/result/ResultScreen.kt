@@ -86,7 +86,9 @@ fun ResultScreen(
                         Text(text = R.string.DOWNLOAD_DIRECTLY)
                     }
                     Button(
-                        onClick = { onPullRequest(readme.id) },
+                        onClick = {
+                            onPullRequest(readme.id)
+                        },
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = R.color.Green,
                             contentColor = R.color.White
@@ -175,7 +177,12 @@ fun ResultScreen(
                         .clickable(enabled = false, onClick = {}),
                     contentAlignment = Alignment.Center
                 ) {
-                    AlreadymeDialog(message = actionDialog.message ?: "", onClose = onCloseDialog)
+                    AlreadymeDialog(
+                        message = actionDialog.message ?: "",
+                        type = actionDialog.type,
+                        onAction = actionDialog.action,
+                        onClose = onCloseDialog
+                    )
                 }
             }
         }
