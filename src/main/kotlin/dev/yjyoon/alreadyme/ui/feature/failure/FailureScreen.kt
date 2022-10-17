@@ -80,7 +80,7 @@ fun FailureScreen(
             contentAlignment = Alignment.TopCenter
         ) {
             val statusCode = if (throwable is HttpException) {
-                throwable.statusCode.toString()
+                throwable.code.toString()
             } else {
                 R.string.UNKNOWN
             }
