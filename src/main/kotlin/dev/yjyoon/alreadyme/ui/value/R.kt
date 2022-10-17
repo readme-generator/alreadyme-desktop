@@ -22,6 +22,7 @@ object R {
         const val URL_EXAMPLE = "ex) https://github.com/readme-generator/alreadyme-desktop"
         const val URL_SUBMIT = "Get README.md"
 
+        const val ANALYZING_REPOSITORY = "Analyzing Github Repository..."
         const val CREATING_README = "Creating README.md..."
         const val README_CREATED = "README.md has been created successfully!"
 
