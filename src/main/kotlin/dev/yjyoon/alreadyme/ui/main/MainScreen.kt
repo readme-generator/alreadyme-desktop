@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalUriHandler
 import dev.yjyoon.alreadyme.ui.feature.failure.FailureScreen
 import dev.yjyoon.alreadyme.ui.feature.loading.GeneratingScreen
 import dev.yjyoon.alreadyme.ui.feature.loading.LoadingScreen
@@ -16,12 +17,14 @@ fun MainScreen(viewModel: MainViewModel) {
     val scope = rememberCoroutineScope()
     val uiState by viewModel.uiState.collectAsState()
 
+    val uriHandler = LocalUriHandler.current
+
     MainScreen(
         uiState = uiState,
         generatingReadme = viewModel.generatingReadme,
         onPostUrl = { url: String -> viewModel.postUrl(scope, url) },
         onDownload = { id: Long -> viewModel.downloadReadme(scope, id) },
-        onPullRequest = { id: Long -> viewModel.pullRequestReadme(scope, id) },
+        onPullRequest = { id: Long -> viewModel.pullRequestReadme(scope, id) { uriHandler.openUri(it) } },
         onCloseDialog = viewModel::closeDialog,
         onBackToTitle = viewModel::backToTitle
     )

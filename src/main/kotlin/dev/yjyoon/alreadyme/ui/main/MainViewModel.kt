@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import dev.yjyoon.alreadyme.data.exception.toHttpException
 import dev.yjyoon.alreadyme.data.repository.ReadmeRepository
 import dev.yjyoon.alreadyme.data.util.FileSavingCanceledException
+import dev.yjyoon.alreadyme.ui.component.AlreadymeDialogType
 import dev.yjyoon.alreadyme.ui.model.Readme
 import dev.yjyoon.alreadyme.ui.value.R
 import io.ktor.client.plugins.*
@@ -27,6 +28,8 @@ class MainViewModel @Inject constructor(
     var generatingReadme by mutableStateOf("")
         private set
 
+    var hasPullRequested = false
+
     fun postUrl(scope: CoroutineScope, url: String) {
         scope.launch {
             _uiState.value = MainUiState.Loading
@@ -35,7 +38,7 @@ class MainViewModel @Inject constructor(
                 onGenerate = { _uiState.value = MainUiState.Generating },
                 onReceive = { generatingReadme += it },
                 onComplete = {
-                    _uiState.value = MainUiState.Success(readme = Readme(id = 0, rawText = generatingReadme))
+                    _uiState.value = MainUiState.Success(readme = Readme(id = it, rawText = generatingReadme))
                 }
             ).onFailure { onHttpRequestFailure(it) }
         }
@@ -52,7 +55,9 @@ class MainViewModel @Inject constructor(
                             isLoading = false,
                             actionDialog = MainUiState.Success.ActionDialog(
                                 isVisible = true,
-                                message = R.string.DOWNLOAD_COMPLETE
+                                type = AlreadymeDialogType.Simple,
+                                message = R.string.DOWNLOAD_COMPLETE,
+                                action = {}
                             )
                         )
                     }
@@ -75,21 +80,38 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun pullRequestReadme(scope: CoroutineScope, id: Long) {
+    fun pullRequestReadme(scope: CoroutineScope, id: Long, action: (String) -> Unit) {
+        if (hasPullRequested) {
+            _uiState.update {
+                (it as MainUiState.Success).copy(
+                    isLoading = false,
+                    actionDialog = MainUiState.Success.ActionDialog(
+                        isVisible = true,
+                        type = AlreadymeDialogType.Simple,
+                        message = R.string.ALREADY_PR
+                    )
+                )
+            }
+            return
+        }
+
         _uiState.update { (it as MainUiState.Success).copy(isLoading = true) }
 
         scope.launch {
             readmeRepository.pullRequestReadme(id)
-                .onSuccess {
+                .onSuccess { url ->
                     _uiState.update {
                         (it as MainUiState.Success).copy(
                             isLoading = false,
                             actionDialog = MainUiState.Success.ActionDialog(
                                 isVisible = true,
-                                message = R.string.PR_COMPLETE
+                                type = AlreadymeDialogType.Action,
+                                message = R.string.PR_COMPLETE,
+                                action = { action(url) }
                             )
                         )
                     }
+                    hasPullRequested = true
                 }
                 .onFailure { onHttpRequestFailure(it) }
 
@@ -116,5 +138,6 @@ class MainViewModel @Inject constructor(
     fun backToTitle() {
         _uiState.value = MainUiState.Waiting
         generatingReadme = ""
+        hasPullRequested = false
     }
 }

@@ -37,6 +37,9 @@ object R {
 
         const val DOWNLOAD_COMPLETE = "README.md has been downloaded successfully!"
         const val PR_COMPLETE = "Pull requested to repository successfully!"
+        const val VIEW_ON_GITHUB = "View on Github"
+        const val ALREADY_PR = "You have already pull requested README.md to repository!"
         const val CONFIRM = "Confirm"
+        const val CLOSE = "Close"
     }
 }
