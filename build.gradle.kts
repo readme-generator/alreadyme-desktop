@@ -51,10 +51,13 @@ compose.desktop {
     application {
         mainClass = "MainKt"
         nativeDistributions {
-            includeAllModules = true
+            modules("java.instrument", "java.management", "jdk.unsupported")
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "alreadyme"
-            packageVersion = "1.0.0"
+            packageName = "ALREADYME"
+            version = "1.0.0"
+            description = "README.md generating AI service application"
+            copyright = "© 2020 ALREADYME. All rights reserved."
+            licenseFile.set(project.file("License"))
         }
     }
 }
