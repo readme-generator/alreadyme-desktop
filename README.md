@@ -68,13 +68,11 @@ If you need more help for native distributions and local execution, please check
 
 # Architectures
 
-**ALREADYME** is based on the MVVM architecture and the Repository pattern, which follows the [Google's official architecture guidance](https://developer.android.com/topic/architecture).
+**ALREADYME** is based on the `MVVM` architecture and the `Repository` pattern, which follows the [Google's official architecture guidance](https://developer.android.com/topic/architecture).
 
 ![architecture](https://user-images.githubusercontent.com/72238126/197008077-9c867968-20a7-4cb0-8fe4-900dc989a6db.png)
 
 The overall architecture of **ALREADYME** is composed of two layers; the UI layer and the Data layer. Each layer has dedicated components and they have each different responsibilities, as defined below:
-
-### Overview
 
 ![overview](https://github.com/skydoves/Pokedex/raw/main/figure/figure1.png)
 
