@@ -11,7 +11,7 @@
 
 ![bootstrap-final](https://user-images.githubusercontent.com/72238126/196931823-b15f32a4-a63b-4fab-a25b-27a2449e688e.gif)
 
-ALREADYME is a multiplatform desktop application which create a `README.md` through only a URL of github repository. While generating `README.md`, it shows the creation process in real time using WebSockets. Also you can directly download generated `README.md` and pull request it to target repository.
+**ALREADYME** is a multiplatform desktop application which create a `README.md` through only a URL of github repository. While generating `README.md`, it shows the creation process in real time using WebSockets. Also you can directly download generated `README.md` and pull request it to target repository.
 
 </p>
 
