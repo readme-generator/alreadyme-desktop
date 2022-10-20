@@ -27,7 +27,7 @@ class ReadmeRepository @Inject constructor(
         onReceive: (String) -> Unit,
         onComplete: (Long) -> Unit
     ): Result<Unit> = runCatching {
-        val response = client.post("") {
+        val response = client.post("readme") {
             setBody(GitUrlRequest(url))
         }
 
