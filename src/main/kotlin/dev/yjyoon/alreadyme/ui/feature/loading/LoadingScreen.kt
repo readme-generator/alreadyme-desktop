@@ -37,6 +37,7 @@ fun LoadingScreen() {
             Modifier
                 .fillMaxWidth()
                 .weight(0.5f)
+                .background(color = MaterialTheme.colors.surface)
                 .padding(36.dp),
             contentAlignment = Alignment.TopCenter
         ) {
