@@ -24,14 +24,6 @@ If you want to build this project on your local, you only need following:
 - Gradle 7.3.3
 - JDK >= 16
 
-```
-// on root project
-gradle build
-
-// on Windows
-./gradlew build
-```
-
 <br>
 
 # Run execution
@@ -114,7 +106,7 @@ With this loosely coupled architecture, you can increase the reusability of comp
 
 # Service repositories
 
-- [ALREADYME.md organization](https://github.com/readme-generator)
+- [ALREADYME.md Organization](https://github.com/readme-generator)
 - [Desktop Client](https://github.com/readme-generator/alreadyme-desktop)
 - [Backend Server](https://github.com/readme-generator/alreadyme-backend)
 - [AI Server](https://github.com/readme-generator/alreadyme-ai-serving)
