@@ -34,17 +34,14 @@ dependencies {
     implementation("com.google.dagger:dagger:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
-    // Logging
-    implementation("ch.qos.logback:logback-classic:1.4.3")
-
     implementation("com.mikepenz:multiplatform-markdown-renderer:0.6.1")
-
+    
     implementation("javax.inject:javax.inject:1")
-    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "16"
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }
 
 compose.desktop {
