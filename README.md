@@ -97,7 +97,7 @@ With this loosely coupled architecture, you can increase the reusability of comp
 
 # Supported OS
 [![Windows](https://img.shields.io/badge/Windows-blue?&logo=windows)]()
-[![Linux](https://img.shields.io/badge/Linux-orange?&logo=ubuntu&logoColor=white)]()
+[![Linux](https://img.shields.io/badge/Linux-purple?&logo=ubuntu&logoColor=white)]()
 [![MacOS](https://img.shields.io/badge/MacOS-black?&logo=macos)]()
 
 > There may be minor issues with OS other than Windows.
