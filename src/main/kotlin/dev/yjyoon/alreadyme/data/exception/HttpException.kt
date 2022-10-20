@@ -11,6 +11,6 @@ data class HttpException(
 ) : IOException(message)
 
 fun HttpRequestTimeoutException.toHttpException() = HttpException(
-    message = "HTTP Request timeout has expired.",
+    message = "This repository is too big to analyzing!",
     code = 408
 )
