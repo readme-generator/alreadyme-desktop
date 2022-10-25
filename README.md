@@ -1,131 +1,131 @@
-<h1>ALREADYME.md Desktop Application</h1>
+# alreadyme-desktop
 
-<p>
+> Here is the desktop environment for Android application which contains alreadyme.tv.
 
-![kotlin-version](https://img.shields.io/badge/kotlin-1.6.10-A97BFF)
-![ktor-client](https://img.shields.io/badge/ktor-client-5675DF)
-![compose-multiplatform](https://img.shields.io/badge/compose-multiplatform-32A579)
-![license](https://img.shields.io/badge/License-Apache2.0-brightgreen)
-![FOSSA Status](https://app.fossa.com/api/projects/custom%2B33996%2Fgithub.com%2Freadme-generator%2Falreadyme-desktop.svg?type=shield)
-[![CodeFactor](https://www.codefactor.io/repository/github/readme-generator/alreadyme-desktop/badge)](https://www.codefactor.io/repository/github/readme-generator/alreadyme-desktop)
+## Build example
 
-![bootstrap-final](https://user-images.githubusercontent.com/72238126/196931823-b15f32a4-a63b-4fab-a25b-27a2449e688e.gif)
+##### 1. Install dependencies
 
-**ALREADYME** is a multiplatform desktop application which create a `README.md` through only a URL of github repository. While generating `README.md`, it shows the creation process in real time using WebSockets. Also you can directly download generated `README.md` and pull request it to target repository.
+##### 2. Add source folder to `dist` directory
 
-</p>
-
-<br>
-
-# How to build
-
-If you want to build this project on your local, you only need following:
-
-- Gradle 7.3.3
-- JDK >= 16
-
-<br>
-
-# Run execution
-
-You can execute this project or create binary file through following commands:
-
-### On Windows
-```shell
-./gradlew run
-./gradlew createDistributable
-./gradlew runDistributable
+```
+android tools develop --data-dir=src/alreadyme
 ```
 
-### On Linux or MacOS
-```shell
-gradle run
-gradle createDistributable
-gradle runDistributable
+##### 3. Build
+
+######### 4. In debug mode, run `build.sh`
+
+##### 5. As debug build
+
+```
+mvn clean install
 ```
 
-<br>
+##### 6. Release build
 
-- `run` is used to run an app locally. You need to define a `mainClass` — an fq-name of a class, containing the main function. Note, that run starts a non-packaged JVM application with full runtime. This is faster and easier to debug, than creating a compact binary image with minified runtime. To run a final binary image, use `runDistributable` instead.
-- `createDistributable` is used to create a prepackaged application image a final application image without creating an installer.
-- `runDistributable` is used to run a prepackaged application image.
+##### 7. In release mode
 
-<br>
+##### (notes)
 
-# Available formats
+1. The build directory will be copied to `lib` folder.
 
-The following formats available for the supported operating systems:
+##### 2. Run `build.sh`
 
-- macOS — `.dmg`, `.pkg`
-- Windows — `.exe`, `.msi`
-- Linux — `.deb`, `.rpm`
+##### 3. In debug mode, run `build.sh`
 
-<br>
+##### 4. In release mode, run `build.sh`
 
-If you need more help for native distributions and local execution, please check [this](https://github.com/JetBrains/compose-jb/tree/master/tutorials/Native_distributions_and_local_execution).
+##### 5. Build
 
-<br>
+##### 6. Release
 
-# Architectures
+## Run example
 
-**ALREADYME** is based on the `MVVM` architecture and the `Repository` pattern, which follows the [Google's official architecture guidance](https://developer.android.com/topic/architecture).
+##### 1. Open terminal. open `dist` folder
 
-![architecture](https://user-images.githubusercontent.com/72238126/197008077-9c867968-20a7-4cb0-8fe4-900dc989a6db.png)
+##### 2. Run `build.sh`
 
-The overall architecture of **ALREADYME** is composed of two layers; the UI layer and the Data layer. Each layer has dedicated components and they have each different responsibilities, as defined below:
+##### 3. Check console
 
-![overview](https://github.com/skydoves/Pokedex/raw/main/figure/figure1.png)
+##### 4. Application is running as an Android thing.
 
-- Each layer follows [unidirectional event/data flow](https://developer.android.com/topic/architecture/ui-layer#udf); the UI layer emits user events to the data layer, and the data layer exposes data as a stream to other layers.
-- The data layer is designed to work independently from other layers and must be pure, which means it doesn't have any dependencies on the other layers.
+##### 5. Devices
 
-With this loosely coupled architecture, you can increase the reusability of components and scalability of your app.
+##### 6. Apps
 
-<br>
+## Installation
 
-# Tech stack & Open-source libraries
-- 100% [Kotlin](https://kotlinlang.org/) based.
-- [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
-- [Compose Multiplatform](https://github.com/JetBrains/compose-jb) for desktop application UI.
-- [Ktor](https://github.com/ktorio/ktor) for HTTP & WebSockets client.
-- [Dagger](https://github.com/google/dagger) for dependency injection.
-- [Kotlin multiplatform markdown renderer](https://github.com/mikepenz/multiplatform-markdown-renderer)
+### By the dev version
 
-<br>
+##### 1. Clone the repository
 
-# Supported OS
-[![Windows](https://img.shields.io/badge/Windows-blue?&logo=windows)]()
-[![Linux](https://img.shields.io/badge/Linux-purple?&logo=ubuntu&logoColor=white)]()
-[![MacOS](https://img.shields.io/badge/MacOS-black?&logo=macos)]()
+##### 2. Copy `src.kv` file into `dist` folder
 
-> There may be minor issues with OS other than Windows.
+##### 3. Copy `main.kt` file into `dist` folder
 
-<br>
+##### 4. Copy `main.s.kt` file into `dist` folder
 
-# Service repositories
+##### 5. Sign into github
 
-- [ALREADYME.md Organization](https://github.com/readme-generator)
-- [Desktop Client](https://github.com/readme-generator/alreadyme-desktop)
-- [Backend Server](https://github.com/readme-generator/alreadyme-backend)
-- [AI Server](https://github.com/readme-generator/alreadyme-ai-serving)
-- [AI Research](https://github.com/readme-generator/alreadyme-ai-research)
+##### 6. Run `mvn package`
 
+##### 7. The package adapter is:
 
-<br>
+##### 1-a. ``addPackage``
 
-# License
-```
-Designed and developed by 2022 YJYOON (Yeojun Yoon)
+##### 1-b. ``addDependency``
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+##### 1-c. `_addPackageManifest`
 
-   http://www.apache.org/licenses/LICENSE-2.0
+##### 1-d. `_addDependencies`
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
+##### 2. Add an instance of `BootProgressListener` in this application's main class
+
+##### 3. Add `Xamarin.Build.`
+
+##### 4. Apply ``mvn build`` listener
+
+##### 5. Run `build.sh` every time the `ফিচার` or `API` tool is started or stopped
+
+##### 6. To run the copy watch `copy watch` command
+
+##### 7. To reduce memory usage, do not run build.sh every time
+
+### By the release version
+
+##### 1. Open terminal
+
+##### 2. Find and run `mvn package`
+
+##### 3. The package adapter is:
+
+##### 1-a. `_addPackageManifest`
+
+##### 1-b. `_addDependencies`
+
+##### 1-c. `_addPackageManifest`
+
+##### 1-d. `_addXamarin.Build`
+
+##### 2. Apply ``mvn build`` listener
+
+##### 3. Run `build.sh`
+
+##### 4. Generate `lib` and `libx` binaries
+
+##### 5. Download to local system
+
+##### 6. Create an `app.yml` with the name of `alreadyme`
+
+##### 7. Run `mvn package`
+
+##### 8. The package adapter is:
+
+##### 1-a. `_addXamarin.Build`
+
+##### 1-b. `_addPackageManifest`
+
+##### 1-c. `_addDependencies`
+
+##### 1-d. `_add
