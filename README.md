@@ -1,131 +1,71 @@
-<h1>ALREADYME.md Desktop Application</h1>
+# README #
 
-<p>
+## What this means
 
-![kotlin-version](https://img.shields.io/badge/kotlin-1.6.10-A97BFF)
-![ktor-client](https://img.shields.io/badge/ktor-client-5675DF)
-![compose-multiplatform](https://img.shields.io/badge/compose-multiplatform-32A579)
-![license](https://img.shields.io/badge/License-Apache2.0-brightgreen)
-![FOSSA Status](https://app.fossa.com/api/projects/custom%2B33996%2Fgithub.com%2Freadme-generator%2Falreadyme-desktop.svg?type=shield)
-[![CodeFactor](https://www.codefactor.io/repository/github/readme-generator/alreadyme-desktop/badge)](https://www.codefactor.io/repository/github/readme-generator/alreadyme-desktop)
+Couldn't find the documentation, or, if found, it's outdated, so I'm just listing the functions in the current state. Also, Rational UI doesn't seem to have the functionality below yet (modal, etc...).
 
-![bootstrap-final](https://user-images.githubusercontent.com/72238126/196931823-b15f32a4-a63b-4fab-a25b-27a2449e688e.gif)
+This was one of the last projects written for me. Maybe I learn a little more on how to code software now. And, as long as I can make something that works, it is taken as a bit of fun.
 
-**ALREADYME** is a multiplatform desktop application which create a `README.md` through only a URL of github repository. While generating `README.md`, it shows the creation process in real time using WebSockets. Also you can directly download generated `README.md` and pull request it to target repository.
+## Are you interested in this?
 
-</p>
+If you are interested in joining me, please feel free to contact me. I am perfectly fine about any contribution.
 
-<br>
+## Features
 
-# How to build
+#### You can open - and save up to 10 files at once **
+- alreadyme.xaml
+- alreadyme.html
+- alreadyme.md
+- alreadyme.md
 
-If you want to build this project on your local, you only need following:
+#### Keep your favorite readme formats option in the same place, every 10 files, every 10 files, every 10 files, every 10 files, every 10 files
 
-- Gradle 7.3.3
-- JDK >= 16
+- HTML
+- Markdown
+- MWE
+- MD
+- PDF
 
-<br>
+#### **You can dazzle the world with your readme file, in a matter of minutes**
+- do it yourself
+- do it in only 5 minutes, by taking your old adapters, and place them over the new, you’ll have a complete readme, just in 5 minutes
 
-# Run execution
+#### How to:
 
-You can execute this project or create binary file through following commands:
+- You can add a line to your alreadyme.xaml file
+- you stay controlling the entire file, giving you, for whatever reason, the choice of not changing the file after saving, until saving has completed
+- you can even store 9 rows of readme/markdown, and regenerate from the first readme/markdown
 
-### On Windows
-```shell
-./gradlew run
-./gradlew createDistributable
-./gradlew runDistributable
-```
+#### You can find all the paths of previously saved readme/markdown automatically (added automatically)
 
-### On Linux or MacOS
-```shell
-gradle run
-gradle createDistributable
-gradle runDistributable
-```
+#### In theory you can save your readme forever. (added automatically)
 
-<br>
+#### You can do it at home or in camp, using Instagram or whatever platform is appropriate (added automatically)
 
-- `run` is used to run an app locally. You need to define a `mainClass` — an fq-name of a class, containing the main function. Note, that run starts a non-packaged JVM application with full runtime. This is faster and easier to debug, than creating a compact binary image with minified runtime. To run a final binary image, use `runDistributable` instead.
-- `createDistributable` is used to create a prepackaged application image a final application image without creating an installer.
-- `runDistributable` is used to run a prepackaged application image.
+#### If you are running Android now, you can create a free account, with a quick and easy process, like every other app (added automatically)
 
-<br>
+#### You can add your own pre-libraries to make your alreadyme more user-friendly (added automatically)
 
-# Available formats
+#### You can open and save readme/markdown/git
 
-The following formats available for the supported operating systems:
+#### In theory you can keep the API ever increasing, but keeping it longer is is challenging (added automatically)
 
-- macOS — `.dmg`, `.pkg`
-- Windows — `.exe`, `.msi`
-- Linux — `.deb`, `.rpm`
+#### You can create a readme/file button, and a button to save it (added automatically)
 
-<br>
+#### How to:
 
-If you need more help for native distributions and local execution, please check [this](https://github.com/JetBrains/compose-jb/tree/master/tutorials/Native_distributions_and_local_execution).
+- You can add a line to your alreadyme.html file
+- you stay controlling the entire file, giving you, for whatever reason, the choice of not changing the file after saving, until saving has completed
+- you can even store 9 rows of readme/markdown
 
-<br>
+#### How to:
 
-# Architectures
+- You can add a line to your alreadyme.md file
+- you stay controlling the entire file, giving you, for whatever reason, the choice of not changing the file after saving, until saving has completed
+- you can even store 9 rows of readme/md
 
-**ALREADYME** is based on the `MVVM` architecture and the `Repository` pattern, which follows the [Google's official architecture guidance](https://developer.android.com/topic/architecture).
+#### How to:
 
-![architecture](https://user-images.githubusercontent.com/72238126/197008077-9c867968-20a7-4cb0-8fe4-900dc989a6db.png)
-
-The overall architecture of **ALREADYME** is composed of two layers; the UI layer and the Data layer. Each layer has dedicated components and they have each different responsibilities, as defined below:
-
-![overview](https://github.com/skydoves/Pokedex/raw/main/figure/figure1.png)
-
-- Each layer follows [unidirectional event/data flow](https://developer.android.com/topic/architecture/ui-layer#udf); the UI layer emits user events to the data layer, and the data layer exposes data as a stream to other layers.
-- The data layer is designed to work independently from other layers and must be pure, which means it doesn't have any dependencies on the other layers.
-
-With this loosely coupled architecture, you can increase the reusability of components and scalability of your app.
-
-<br>
-
-# Tech stack & Open-source libraries
-- 100% [Kotlin](https://kotlinlang.org/) based.
-- [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
-- [Compose Multiplatform](https://github.com/JetBrains/compose-jb) for desktop application UI.
-- [Ktor](https://github.com/ktorio/ktor) for HTTP & WebSockets client.
-- [Dagger](https://github.com/google/dagger) for dependency injection.
-- [Kotlin multiplatform markdown renderer](https://github.com/mikepenz/multiplatform-markdown-renderer)
-
-<br>
-
-# Supported OS
-[![Windows](https://img.shields.io/badge/Windows-blue?&logo=windows)]()
-[![Linux](https://img.shields.io/badge/Linux-purple?&logo=ubuntu&logoColor=white)]()
-[![MacOS](https://img.shields.io/badge/MacOS-black?&logo=macos)]()
-
-> There may be minor issues with OS other than Windows.
-
-<br>
-
-# Service repositories
-
-- [ALREADYME.md Organization](https://github.com/readme-generator)
-- [Desktop Client](https://github.com/readme-generator/alreadyme-desktop)
-- [Backend Server](https://github.com/readme-generator/alreadyme-backend)
-- [AI Server](https://github.com/readme-generator/alreadyme-ai-serving)
-- [AI Research](https://github.com/readme-generator/alreadyme-ai-research)
-
-
-<br>
-
-# License
-```
-Designed and developed by 2022 YJYOON (Yeojun Yoon)
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
+- You can add a line to your alreadyme.md.json file
+- you stay controlling the entire file, giving you, for whatever reason, the choice of not changing the file after saving, until saving has completed
+- you can even store 9 rows of readme/md.json
